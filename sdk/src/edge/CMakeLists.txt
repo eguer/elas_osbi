@@ -6,11 +6,11 @@ set(DEFINES     "-DIO_SYSCALL_WRAPPING")
 
 set(SOURCE_FILES
         edge_call.c
-        edge_dispatch.c
+        edge_dispatch.cpp
         edge_syscall.c
     )
 
-set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/edge)
+set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/edge ${CMAKE_SOURCE_DIR}/include/host)
 
 set(CMAKE_C_FLAGS          "${CMAKE_C_FLAGS} ${CFLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LDFLAGS}")

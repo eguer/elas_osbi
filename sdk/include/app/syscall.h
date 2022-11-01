@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "sealing.h"
+#include "types.h"
 
 /* TODO We should be syncing these more explictly with the runtime
    defs */
@@ -39,7 +40,7 @@
 #define FAST_SYSCALL_ADD_BUF   499
 #define FAST_SYSCALL_OFFSET    500
 
-#define SYSCALL(which, arg0, arg1, arg2, arg3, arg4)           \
+#define SYSCALL(which, arg0, arg1, arg2, arg3, arg4, arg5)           \
   ({                                                           \
     register uintptr_t a0 asm("a0") = (uintptr_t)(arg0);       \
     register uintptr_t a1 asm("a1") = (uintptr_t)(arg1);       \

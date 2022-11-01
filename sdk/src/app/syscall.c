@@ -4,6 +4,10 @@
 //------------------------------------------------------------------------------
 #include "syscall.h"
 
+#define SYS_futex 98
+#define FUTEX_WAIT 0
+#define FUTEX_WAKE 1
+
 /* this implementes basic system calls for the enclave */
 
 int
@@ -134,6 +138,7 @@ static void __internal_ma_handler(uintptr_t event_no, uintptr_t uid, struct ma_c
 	SYSCALL_1(SYSCALL_MA_HANDLER_RETURN, ctx);
 
 	// should not be here
+	for(;;); // TODO needs to be removed?
 }
 
 void register_mem_access_handler(mem_access_handler handler){
@@ -164,11 +169,11 @@ void register_mem_access_handler(mem_access_handler handler){
 #define LOCK_CONTENDED 2
 
 static inline long futex_wait(int* uaddr, int val){
-	SYSCALL_6(SYS_futex, uaddr, FUTEX_WAIT, val, 0, 0, 0);
+	return SYSCALL_6(SYS_futex, uaddr, FUTEX_WAIT, val, 0, 0, 0);
 }
 
 static inline long futex_wake(int* uaddr, int num){
-	SYSCALL_6(SYS_futex, uaddr, FUTEX_WAKE, num, 0, 0, 0);
+	return SYSCALL_6(SYS_futex, uaddr, FUTEX_WAKE, num, 0, 0, 0);
 }
 
 void simple_futex_init(simple_futex_t* sfutex){

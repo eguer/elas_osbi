@@ -22,6 +22,9 @@ extern "C" {
 #include "KeystoneDevice.hpp"
 #include "Memory.hpp"
 #include "Params.hpp"
+#include "edge_dispatch.hpp"
+
+#define MAX_DR_REQUEST_ARGS 8
 
 namespace Keystone {
 
@@ -128,9 +131,6 @@ class Enclave {
     ~Enclave();
     void* getSharedBuffer();
     size_t getSharedBufferSize();
-    int getID() const {
-	    return eid;
-    }
     int getSID() const;
     Error registerOcallDispatch(EdgeCallDispatcher* dispatcher);
     Error init(const char* filepath, const char* runtime, Params parameters);

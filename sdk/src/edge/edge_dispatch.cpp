@@ -3,7 +3,7 @@
 // All Rights Reserved. See LICENSE for license details.
 //------------------------------------------------------------------------------
 #include "edge_call.h"
-#include "edge_dispatch.h"
+#include "edge_dispatch.hpp"
 #include "stdio.h"
 #include "keystone.h"
 

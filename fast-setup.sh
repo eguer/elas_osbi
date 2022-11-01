@@ -22,6 +22,7 @@ else
 fi
 
 echo "Starting..."
+
 if ( $(command -v riscv$BITS-unknown-linux-gnu-gcc > /dev/null) &&
   $(command -v riscv$BITS-unknown-elf-gcc > /dev/null) )
 then
@@ -56,6 +57,8 @@ else
   rm $TOOLCHAIN_7Z_FILE
 fi
 
+:<< 'END'
+
 echo "Updating and cloning submodules, this may take a long time"
 git config submodule.riscv-gnu-toolchain.update none
 
@@ -72,6 +75,8 @@ fi
 
 git submodule sync --recursive
 git submodule update --init --recursive
+
+END
 
 # build SDK if not present
 if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]

@@ -12,6 +12,7 @@ extern "C" {
 }
 #include "ElfFile.hpp"
 #include "hash_util.hpp"
+#inlucde "edge_dispatch.hpp"
 
 namespace Keystone {
 
