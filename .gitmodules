@@ -10,3 +10,6 @@
 [submodule "qemu"]
 	path = qemu
 	url = https://github.com/qemu/qemu
+[submodule "libsodium"]
+	path = libsodium
+	url = https://github.com/jedisct1/libsodium
