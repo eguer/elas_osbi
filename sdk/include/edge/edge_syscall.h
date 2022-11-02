@@ -8,7 +8,7 @@
 #include "edge_common.h"
 #include "syscall_nums.h"
 
-#include "../host/keystone.h"
+#include "keystone.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -91,7 +91,7 @@ typedef struct {
 } sargs_SYS_clock_gettime;
 
 void
-incoming_syscall(Keystone *enclave, struct edge_call *buffer, struct shared_region *shared_region);
+incoming_syscall(Enclave *enclave, struct edge_call *buffer, struct shared_region *shared_region);
 
 #ifdef __cplusplus
 }

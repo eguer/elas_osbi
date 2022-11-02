@@ -3,6 +3,7 @@
 
 #include<stdint.h>
 #include<stdlib.h>
+#include "syscall.h"
 
 #define OCALL_ECALL_SERVE 0
 #define OCALL_ECALL_DONE_CONT 1

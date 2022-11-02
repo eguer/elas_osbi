@@ -1,4 +1,4 @@
-project(keystone-edge C ASM)
+project(keystone-edge CXX)
 
 set(CFLAGS      "-Wall -Werror")
 set(LDFLAGS     "-static")
@@ -7,7 +7,7 @@ set(DEFINES     "-DIO_SYSCALL_WRAPPING")
 set(SOURCE_FILES
         edge_call.c
         edge_dispatch.cpp
-        edge_syscall.c
+        edge_syscall.cpp
     )
 
 set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/edge ${CMAKE_SOURCE_DIR}/include/host)
@@ -18,7 +18,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LDFLAGS}")
 include_directories(${INCLUDE_DIRS})
 add_definitions(${DEFINES})
 
-add_library(${PROJECT_NAME} ${SOURCE_FILES})
+add_library(${PROJECT_NAME} ${SOURCE_FILES} ${COMMON_SOURCE_FILES})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION ${out_dir}/lib)
 install(DIRECTORY ${INCLUDE_DIRS} DESTINATION ${out_dir}/include)

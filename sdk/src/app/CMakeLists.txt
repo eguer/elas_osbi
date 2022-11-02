@@ -4,13 +4,16 @@ set(CFLAGS      "-Wall -Werror")
 set(LDFLAGS     "-static")
 
 set(SOURCE_FILES
+  ecall.c
   encret.s
+  icall.c
+  rpc.c
   string.c
   syscall.c
   tiny-malloc.c
   )
 
-set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/app)
+set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/app ${CMAKE_SOURCE_DIR}/include/edge)
 
 set(CMAKE_C_FLAGS          "${CMAKE_C_FLAGS} ${CFLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LDFLAGS}")

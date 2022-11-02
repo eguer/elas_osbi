@@ -2,10 +2,10 @@
 // Copyright (c) 2018, The Regents of the University of California (Regents).
 // All Rights Reserved. See LICENSE for license details.
 //------------------------------------------------------------------------------
-#include "edge_call.h"
 #include "edge_dispatch.hpp"
 #include "stdio.h"
 #include "keystone.h"
+#include "edge_call.h"
 
 #if defined(IO_SYSCALL_WRAPPING) || defined(FAST_IO_SYSCALL_WRAPPING)
 #include "edge_syscall.h"
@@ -14,13 +14,13 @@
 edgecallwrapper edge_call_table[MAX_EDGE_CALL];
 
 /* Registered handler for incoming edge calls */
-int DefaultEdgeCallDispatcher::dispatch(Keystone* enclave, void* buffer) {
+int DefaultEdgeCallDispatcher::dispatch(Enclave* enclave, void* buffer) {
   struct edge_call* edge_call = (struct edge_call*)buffer;
 
 #if defined(IO_SYSCALL_WRAPPING) || defined(FAST_IO_SYSCALL_WRAPPING)
   /* If its a syscall handle it specially */
   if (edge_call->call_id == EDGECALL_SYSCALL) {
-    incoming_syscall(buffer);
+    incoming_syscall(enclave, edge_call, &shared_region);
     return 0;
   }
 #endif /*  IO_SYSCALL_WRAPPING */
@@ -38,7 +38,7 @@ fatal_error:
   return 0;
 }
 
-int DefaultEdgeCallDispatcher::dispatchBlocked(Keystone* enclave, void* buffer){
+int DefaultEdgeCallDispatcher::dispatchBlocked(Enclave* enclave, void* buffer) {
     struct edge_call* edge_call = (struct edge_call*) buffer;
 #if defined(IO_SYSCALL_WRAPPING) || defined(FAST_IO_SYSCALL_WRAPPING)
     if( edge_call->call_id == EDGECALL_SYSCALL){

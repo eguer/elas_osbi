@@ -4,7 +4,7 @@
 #include <unistd.h>
 // Special edge-call handler for syscall proxying
 void
-incoming_syscall(Keystone *enclave, struct edge_call *edge_call, struct shared_region *shared_region) {
+incoming_syscall(Enclave *enclave, struct edge_call *edge_call, struct shared_region *shared_region) {
   struct edge_syscall* syscall_info;
 
   size_t args_size;
@@ -41,51 +41,51 @@ incoming_syscall(Keystone *enclave, struct edge_call *edge_call, struct shared_r
       sargs_SYS_clock_gettime *clock_gettime_args = (sargs_SYS_clock_gettime*)syscall_info->data;
 	    ret = clock_gettime(clock_gettime_args->clock, &clock_gettime_args->tp);
 	    break;
-    case (SYS_openat):;
+    case(SYS_openat):;
       sargs_SYS_openat* openat_args = (sargs_SYS_openat*)syscall_info->data;
       ret = openat(
           openat_args->dirfd, openat_args->path, openat_args->flags,
           openat_args->mode);
       break;
-    case (SYS_unlinkat):;
+    case(SYS_unlinkat):;
       sargs_SYS_unlinkat* unlinkat_args =
           (sargs_SYS_unlinkat*)syscall_info->data;
       ret = unlinkat(
           unlinkat_args->dirfd, unlinkat_args->path, unlinkat_args->flags);
       break;
-    case (SYS_ftruncate):;
+    case(SYS_ftruncate):;
       sargs_SYS_ftruncate* ftruncate_args =
           (sargs_SYS_ftruncate*)syscall_info->data;
       ret = ftruncate(ftruncate_args->fd, ftruncate_args->offset);
       break;
-    case (SYS_fstatat):;
+    case(SYS_fstatat):;
       sargs_SYS_fstatat* fstatat_args = (sargs_SYS_fstatat*)syscall_info->data;
       // Note the use of the implicit buffer in the stat args object (stats)
       ret = fstatat(
           fstatat_args->dirfd, fstatat_args->pathname, &fstatat_args->stats,
           fstatat_args->flags);
       break;
-    case (SYS_write):;
+    case(SYS_write):;
       sargs_SYS_write* write_args = (sargs_SYS_write*)syscall_info->data;
       ret = write(write_args->fd, write_args->buf, write_args->len);
       break;
-    case (SYS_read):;
+    case(SYS_read):;
       sargs_SYS_read* read_args = (sargs_SYS_read*)syscall_info->data;
       ret = read(read_args->fd, read_args->buf, read_args->len);
       break;
-    case (SYS_sync):;
+    case(SYS_sync):;
       sync();
       ret = 0;
       break;
-    case (SYS_fsync):;
+    case(SYS_fsync):;
       sargs_SYS_fsync* fsync_args = (sargs_SYS_fsync*)syscall_info->data;
       ret = fsync(fsync_args->fd);
       break;
-    case (SYS_close):;
+    case(SYS_close):;
       sargs_SYS_close* close_args = (sargs_SYS_close*)syscall_info->data;
       ret = close(close_args->fd);
       break;
-    case (SYS_lseek):;
+    case(SYS_lseek):;
       sargs_SYS_lseek* lseek_args = (sargs_SYS_lseek*)syscall_info->data;
       ret = lseek(lseek_args->fd, lseek_args->offset, lseek_args->whence);
       break;

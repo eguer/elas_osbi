@@ -2,6 +2,7 @@
 // Copyright (c) 2018, The Regents of the University of California (Regents).
 // All Rights Reserved. See LICENSE for license details.
 //------------------------------------------------------------------------------
+#pragma once
 #ifndef __EDGE_CALL_H_
 #define __EDGE_CALL_H__
 

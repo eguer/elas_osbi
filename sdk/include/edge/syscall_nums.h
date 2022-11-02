@@ -278,6 +278,9 @@
 #define __NR_sysriscv __NR_arch_specific_syscall
 #define __NR_riscv_flush_icache (__NR_sysriscv + 15)
 
+#define FAST_SYSCALL_ADD_BUF    499
+#define FAST_SYSCALL_OFFSET     500
+
 #define SYS_io_setup 0
 #define SYS_io_destroy 1
 #define SYS_io_submit 2
