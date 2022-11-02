@@ -78,6 +78,9 @@ git submodule update --init --recursive
 
 END
 
+export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
+#./make-sodium.sh
+
 # build SDK if not present
 if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
 then
@@ -100,6 +103,7 @@ RISCV_DIR=$(dirname $(dirname $GCC_PATH))
 echo "export RISCV=$RISCV_DIR" > ./source.sh
 echo "export PATH=$RISCV/bin:\$PATH" >> ./source.sh
 echo "export KEYSTONE_SDK_DIR=$KEYSTONE_SDK_DIR" >> ./source.sh
+echo "export LIBSODIUM_DIR=$LIBSODIUM_DIR" >> ./source.sh
 
 echo "RISC-V toolchain and Keystone SDK have been fully setup"
 echo ""

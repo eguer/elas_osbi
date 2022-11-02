@@ -168,4 +168,10 @@ calculate_required_pages(
     uint64_t eapp_sz, uint64_t eapp_stack_sz, uint64_t rt_sz,
     uint64_t rt_stack_sz);
 
+uid_t elasticlave_create(size_t size);
+int elasticlave_change(uid_t uid, unsigned long perm);
+int elasticlave_unmap(void* vaddr);
+void* elasticlave_map(uid_t uid);
+int elasticlave_destroy(uid_t uid);
+
 }  // namespace Keystone

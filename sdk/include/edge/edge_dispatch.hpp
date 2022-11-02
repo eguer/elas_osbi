@@ -5,7 +5,7 @@
 #include "edge_common.h"
 #include "edge_call.h"
 
-class Enclave;
+namespace Keystone {
 
 typedef int (*edgecallwrapper)(Enclave*, void*, struct shared_region*);
 
@@ -30,5 +30,5 @@ class DefaultEdgeCallDispatcher : public EdgeCallDispatcher {
 		int dispatchBlocked(Enclave* enclave, void* buffer);
 };
 
-
+} // namespace Keystone
 #endif

@@ -11,3 +11,5 @@ cd libsodium
 ./configure --host=riscv64-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
 make
 
+cd $CURDIR
+

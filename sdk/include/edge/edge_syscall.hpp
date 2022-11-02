@@ -10,9 +10,7 @@
 
 #include "keystone.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace Keystone {
 
 // Special call number
 #define EDGECALL_SYSCALL MAX_EDGE_CALL + 1
@@ -93,8 +91,6 @@ typedef struct {
 void
 incoming_syscall(Enclave *enclave, struct edge_call *buffer, struct shared_region *shared_region);
 
-#ifdef __cplusplus
 }
-#endif
 
 #endif /* __EDGE_SYSCALL_H_ */

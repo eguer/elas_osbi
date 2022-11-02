@@ -8,10 +8,10 @@
 #include "edge_call.h"
 
 #if defined(IO_SYSCALL_WRAPPING) || defined(FAST_IO_SYSCALL_WRAPPING)
-#include "edge_syscall.h"
+#include "edge_syscall.hpp"
 #endif /*  IO_SYSCALL_WRAPPING */
 
-edgecallwrapper edge_call_table[MAX_EDGE_CALL];
+namespace Keystone {
 
 /* Registered handler for incoming edge calls */
 int DefaultEdgeCallDispatcher::dispatch(Enclave* enclave, void* buffer) {
@@ -67,3 +67,5 @@ int DefaultEdgeCallDispatcher::register_call(unsigned long call_id, edgecallwrap
   edge_call_blocked_table[call_id] = blocked_handler;
   return 0;
 }
+
+} // namespace Keystone

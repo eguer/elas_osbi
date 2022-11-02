@@ -1,6 +1,6 @@
 project(keystone-eapp C ASM)
 
-set(CFLAGS      "-Wall -Werror")
+set(CFLAGS      "-Wall")
 set(LDFLAGS     "-static")
 
 set(SOURCE_FILES
@@ -13,7 +13,7 @@ set(SOURCE_FILES
   tiny-malloc.c
   )
 
-set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/app ${CMAKE_SOURCE_DIR}/include/edge)
+set(INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/include/app ${CMAKE_SOURCE_DIR}/include/edge $ENV{LIBSODIUM_DIR}/include)
 
 set(CMAKE_C_FLAGS          "${CMAKE_C_FLAGS} ${CFLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LDFLAGS}")
