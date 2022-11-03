@@ -57,8 +57,6 @@ else
   rm $TOOLCHAIN_7Z_FILE
 fi
 
-:<< 'END'
-
 echo "Updating and cloning submodules, this may take a long time"
 git config submodule.riscv-gnu-toolchain.update none
 
@@ -75,8 +73,6 @@ fi
 
 git submodule sync --recursive
 git submodule update --init --recursive
-
-END
 
 export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
 #./make-sodium.sh
