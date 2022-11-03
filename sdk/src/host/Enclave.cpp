@@ -29,6 +29,7 @@ Enclave::Enclave() {
   custom = NULL;
   target_call_id = (unsigned long)-1;
   region_n = 0;
+  eid = -1;
 }
 
 Enclave::~Enclave() {
@@ -60,7 +61,7 @@ calculate_required_pages(uint64_t eapp_sz, uint64_t rt_sz) {
 Error
 Enclave::loadUntrusted() {
   uintptr_t va_start = ROUND_DOWN(params.getUntrustedMem(), PAGE_BITS);
-  vaddr_t va_start_u = ROUND_UP(params.getUntrustedMem() + (params.getUntrustedSize() >> 1), PAGE_BITS);
+  uintptr_t va_start_u = ROUND_UP(params.getUntrustedMem() + (params.getUntrustedSize() >> 1), PAGE_BITS);
   uintptr_t va_end   = ROUND_UP(params.getUntrustedEnd(), PAGE_BITS);
 
   while (va_start < va_end) {
@@ -121,8 +122,8 @@ Enclave::loadElf(ElfFile* elf) {
   unsigned int mode = elf->getPageMode();
 
   size_t num_pages = ROUND_DOWN(elf->getTotalMemorySize(), PAGE_BITS) / PAGE_SIZE;
-  vaddr_t va_real = (vaddr_t)pMemory->ReadMem((vaddr_t)epm_free_list, num_pages << PAGE_BITS);
-  vaddr_t va_elf = elf->getMinVaddr();
+  uintptr_t va_real = (uintptr_t)pMemory->readMem((uintptr_t)epm_free_list, num_pages << PAGE_BITS);
+  uintptr_t va_elf = elf->getMinVaddr();
   memset((void*)va_real, 0, num_pages << PAGE_BITS);
 
   for (unsigned int i = 0; i < elf->getNumProgramHeaders(); i++) {
@@ -413,7 +414,7 @@ Enclave::mapUntrusted(size_t size) {
     return false;
   }
 
-  // untrusted_start = (vaddr_t)shared_buffer; // TODO change??? delete??? not in class currently
+  // untrusted_start = (uintptr_t)shared_buffer; // TODO change??? delete??? not in class currently
 
   shared_buffer_size = size >> 1;
 
@@ -438,14 +439,14 @@ Enclave::destroy() {
   return pDevice->destroy();
 }
 
-void Keystone::process_new_memory_region(uintptr_t size) {
+void Enclave::process_new_memory_region(uintptr_t size) {
   void* vaddr = pDevice->map(0, size);
   if (new_mem_handler)
       new_mem_handler(vaddr);
 }
 
 // TODO change to using pDevice->resume??
-Error Keystone::runOnce(int* ret_code) {
+Error Enclave::runOnce(int* ret_code) {
   int ret;
 
   if(state == ENCLAVE_STATE_INITIALISED){
@@ -467,16 +468,16 @@ Error Keystone::runOnce(int* ret_code) {
     if (ocall_dispatcher != NULL) {
       int cont = !ocall_dispatcher->dispatchBlocked(this, getSharedBuffer());
       if(!cont)
-        return KEYSTONE_SUCCESS;
+        return Error::Success;
       state = ENCLAVE_STATE_LAUNCHED;
       performance_check_start(&run_stats);
       ret = ioctl(fd, KEYSTONE_IOC_RESUME_ENCLAVE, &run_args);
       performance_check_end(&run_stats);
       performance_count(&run_stats);
     } else
-      return KEYSTONE_SUCCESS;
+      return Error::Success;
   } else{
-    return KEYSTONE_ERROR;
+    return Error::InvalidEnclave;
   }
 
     state = ENCLAVE_STATE_LAUNCHED;
@@ -506,7 +507,7 @@ Error Keystone::runOnce(int* ret_code) {
       default:
         destroy();
         ERROR("failed to run enclave - ioctl() failed: %d", ret);
-        return KEYSTONE_ERROR;
+        return Error::IoctlErrorRun;
     }
 
     if(!cont)
@@ -521,7 +522,7 @@ Error Keystone::runOnce(int* ret_code) {
     state = ENCLAVE_STATE_ENDED;
 
   *ret_code = ret;
-  return KEYSTONE_SUCCESS;
+  return Error::Success;
 }
 
 // TODO change to use runOnce??
@@ -534,8 +535,8 @@ Enclave::run(uintptr_t* retval) {
   Error ret = pDevice->run(retval);
   while (ret == Error::EdgeCallHost || ret == Error::EnclaveInterrupted) {
     /* enclave is stopped in the middle. */
-    if (ret == Error::EdgeCallHost && oFuncDispatch != NULL) {
-      oFuncDispatch(getSharedBuffer());
+    if (ret == Error::EdgeCallHost && ocall_dispatcher != NULL) {
+      // ocall_dispatcher(getSharedBuffer()); // TODO fix!!!
     }
     ret = pDevice->resume(retval);
   }
@@ -549,13 +550,13 @@ Enclave::run(uintptr_t* retval) {
   return Error::Success;
 }
 
-Error Keystone::call(unsigned long call_id, void* data, size_t data_len, void* return_buffer, size_t return_len){
+Error Enclave::call(unsigned long call_id, void* data, size_t data_len, void* return_buffer, size_t return_len){
     return call_with_stats(call_id, data, data_len, return_buffer, return_len, &ecall_stats);
 }
 
-Error Keystone::call_with_stats(unsigned long call_id, void* data, size_t data_len, void* return_buffer, size_t return_len, struct ecall_stats* stats) {
+Error Enclave::call_with_stats(unsigned long call_id, void* data, size_t data_len, void* return_buffer, size_t return_len, struct ecall_stats* stats) {
   if(params.isSimulated())
-    return KEYSTONE_ERROR;
+    return Error::IsSimulatedError;
 
   struct shared_region shared_region;
   shared_region.shared_start = (uintptr_t)o_shared_buffer;
@@ -568,7 +569,7 @@ Error Keystone::call_with_stats(unsigned long call_id, void* data, size_t data_l
   uintptr_t buffer_data_start = edge_call_data_ptr(&shared_region);
 
   if (data_len > (shared_buffer_size - (buffer_data_start - (uintptr_t)shared_buffer))) {
-    return KEYSTONE_ERROR;
+    return Error::CallWithStatsError;
   }
 
   if(call_id == target_call_id)
@@ -581,34 +582,35 @@ Error Keystone::call_with_stats(unsigned long call_id, void* data, size_t data_l
   }
 
   if(edge_call_setup_call(edge_call, (void*)buffer_data_start, data_len, &shared_region) != 0){
-    return KEYSTONE_ERROR;
+    return Error::EdgeCallSetupFailure;
   }
 
   // TODO change to use pDevice?
+  Error r;
   edge_call->call_id = call_id; // only finally set the call_id
   do {
-    if (runOnce(&ret) != KEYSTONE_SUCCESS) {
-      return KEYSTONE_ERROR;
+    if ((r = runOnce(&ret)) != Error::Success) {
+      return r;
     }
   } while(ret && ret != KEYSTONE_ENCLAVE_CALL_RETURN);
 
   if (!ret) {
-    return KEYSTONE_ERROR;
+    return r;
   }
 
   if (edge_call->return_data.call_status != CALL_STATUS_OK) {
-    return KEYSTONE_ERROR;
+    return Error::EdgeCallFailure;
   }
 
   if( return_len == 0 ) {
     /* Done, no return */
-    return KEYSTONE_SUCCESS;
+    return Error::Success;
   }
 
   uintptr_t return_ptr;
   size_t ret_len_untrusted;
   if(edge_call_ret_ptr(edge_call, &return_ptr, &ret_len_untrusted, &shared_region) != 0){
-    return KEYSTONE_ERROR;
+    return Error::EdgeCallFailure;
   }
 
   if(ret_len_untrusted < return_len)
@@ -623,7 +625,7 @@ Error Keystone::call_with_stats(unsigned long call_id, void* data, size_t data_l
     performance_count_data(&stats->retval_copy_stats, return_len);
   }
 
-  return KEYSTONE_SUCCESS;
+  return Error::Success;
 }
 
 void*
@@ -636,7 +638,7 @@ Enclave::getSharedBufferSize() {
   return shared_buffer_size;
 }
 
-enum enclave_state Keystone::getState() const{
+enum enclave_state Enclave::getState() const{
     return state;
 }
 
@@ -647,12 +649,12 @@ Enclave::registerOcallDispatch(EdgeCallDispatcher* dispatcher) {
   return Error::Success;
 }
 
-Error Keystone::registerNewMemHandler(NewMemHandler handler){
+Error Enclave::registerNewMemHandler(NewMemHandler handler){
     new_mem_handler = handler;
-    return KEYSTONE_SUCCESS;
+    return Error::Success;
 }
 
-int Keystone::getSID() const{
+int Enclave::getSID() const{
     int ret= ioctl(fd, KEYSTONE_IOC_GET_ENCLAVE_ID, &eid);
     return ret;
 }
@@ -670,10 +672,10 @@ Error EnclaveGroup::run(){
             }
         }
     }
-    return KEYSTONE_SUCCESS;
+    return Error::Success;
 }
 
-
+// TODO move to KeystoneDevice!!
 uid_t elasticlave_create(size_t size){
     uid_t uid;
     struct keystone_ioctl_elasticlave_create params = {
@@ -722,11 +724,11 @@ int elasticlave_unmap(void* vaddr){
     return munmap(vaddr, size);
 }
 
-void Keystone::set_target_call(unsigned long target) {
+void Enclave::set_target_call(unsigned long target) {
     target_call_id = target;
 }
 
-void Keystone::print_call_stats() {
+void Enclave::print_call_stats() {
     print_ecall_stats(&ecall_stats);
 }
 
@@ -739,7 +741,7 @@ bool keystone_init(){
     return true;
 }
 
-int Keystone::print_sm_stats(struct enclave_stats* stats){
+int Enclave::print_sm_stats(struct enclave_stats* stats){
     struct keystone_ioctl_sm_stats ioc_data;
     ioc_data.eid = eid;
     ioc_data.stats = stats;
@@ -747,7 +749,7 @@ int Keystone::print_sm_stats(struct enclave_stats* stats){
     return ret;
 }
 
-int Keystone::print_rt_stats(struct enclave_rt_stats* rt_stats){
+int Enclave::print_rt_stats(struct enclave_rt_stats* rt_stats){
     struct keystone_ioctl_rt_stats ioc_data;
     ioc_data.eid = eid;
     ioc_data.rt_stats = rt_stats;
@@ -755,30 +757,30 @@ int Keystone::print_rt_stats(struct enclave_rt_stats* rt_stats){
     return ret;
 }
 
-struct performance_stats Keystone::get_run_stats() const{
+struct performance_stats Enclave::get_run_stats() const{
     return run_stats;
 }
 
-Error Keystone::elasticlave_transfer(uid_t uid){
+Error Enclave::elasticlave_transfer(uid_t uid){
     struct keystone_ioctl_elasticlave_transfer params = {
         .uid = uid,
         .eid = (__u64)this->eid
     };
     int ret = ioctl(fd, KEYSTONE_IOC_ELASTICLAVE_TRANSFER, &params);
-    return ret ? KEYSTONE_ERROR : KEYSTONE_SUCCESS;
+    return ret ? Error::ElasticlaveTransferFailure : Error::Success;
 }
 
-Error Keystone::elasticlave_share(uid_t uid, unsigned long perm){
+Error Enclave::elasticlave_share(uid_t uid, unsigned long perm){
     struct keystone_ioctl_elasticlave_share params = {
         .uid = uid,
         .perm = (__u64)perm,
         .eid = (__u64)this->eid
     };
     int ret = ioctl(fd, KEYSTONE_IOC_ELASTICLAVE_SHARE, &params);
-    return ret ? KEYSTONE_ERROR : KEYSTONE_SUCCESS;
+    return ret ? Error::ElasticlaveShareFailure : Error::Success;
 }
 
-void* Keystone::get_region_buffer(uid_t uid) const{
+void* Enclave::get_region_buffer(uid_t uid) const{
     int i;
     for(i = 0; i < region_n; i++) {
         if (region_uids[i] == uid)
@@ -787,7 +789,7 @@ void* Keystone::get_region_buffer(uid_t uid) const{
     return NULL;
 }
 
-void Keystone::add_region_buffer(uid_t uid, void* buf){
+void Enclave::add_region_buffer(uid_t uid, void* buf){
     region_uids[region_n] = uid;
     region_bufs[region_n] = buf;
     ++region_n;
