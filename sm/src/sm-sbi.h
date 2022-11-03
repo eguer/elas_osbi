@@ -39,22 +39,22 @@ unsigned long
 sbi_sm_print_rt_stats(unsigned long eid, uintptr_t tmp_stats_paddr);
 
 unsigned long
-sbi_sm_elasticlave_change(__u64 uid, __u64 perm);
+sbi_sm_elasticlave_change(unsigned int uid, unsigned long perm);
 
 unsigned long
-sbi_sm_elasticlave_create(uintptr_t pa, __u64 size, unsigned long uid);
+sbi_sm_elasticlave_create(uintptr_t pa, unsigned long size, unsigned long uid);
 
 unsigned long 
 sbi_sm_elasticlave_host_create(uintptr_t pa, uintptr_t size, uintptr_t uid_ret);
 
 unsigned long
-sbi_sm_elasticlave_map(uid_t uid, uintptr_t pa_addr, uintptr_t pa_size);
+sbi_sm_elasticlave_map(unsigned int uid, uintptr_t pa_addr, uintptr_t pa_size);
 
 unsigned long 
 sbi_sm_elasticlave_unmap(uintptr_t mem_mappings_uid);
 
 unsigned long
-sbi_sm_elasticlave_destroy(uid_t uid);
+sbi_sm_elasticlave_destroy(unsigned int uid);
 
 unsigned long
 sbi_sm_elasticlave_transfer(uintptr_t uid, uintptr_t eid);

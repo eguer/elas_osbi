@@ -1,0 +1,11 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/../../src/crypto.o: \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/crypto.c \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/crypto.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/sha3/sha3.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/ed25519/ed25519.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/hkdf_sha3_512/hkdf_sha3_512.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/page.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h

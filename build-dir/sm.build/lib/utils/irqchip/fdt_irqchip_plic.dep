@@ -1,0 +1,18 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/irqchip/fdt_irqchip_plic.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/irqchip/fdt_irqchip_plic.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt_env.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_string.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/fdt.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_error.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_hartmask.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitmap.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitops.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_helper.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/irqchip/fdt_irqchip.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/irqchip/plic.h

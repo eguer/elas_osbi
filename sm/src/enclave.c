@@ -212,7 +212,7 @@ static inline void context_switch_to_host(struct sbi_trap_regs *regs,
  * Called once by the SM on startup
  */
 void enclave_init_metadata(){
-  enclave_id eid;
+  unsigned int eid;
   int i = 0;
 
   /* Assumes eids are incrementing values, which they are for now */
@@ -247,11 +247,11 @@ static unsigned long clean_enclave_memory(uintptr_t utbase, uintptr_t utsize)
 
 static unsigned long encl_alloc_eid(struct enclave* encl)
 {
-  static enclave_id eid_max = 0;
+  static unsigned int eid_max = 0;
   encl->eid = ++eid_max;
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
   // TODO clean up?
-  // enclave_id eid;
+  // unsigned int eid;
 
   // spin_lock(&encl_lock);
 
@@ -299,7 +299,7 @@ static unsigned long encl_free_eid(struct enclave* encl)
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-// int get_enclave_region_index(enclave_id eid, enum enclave_region_type type){
+// int get_enclave_region_index(unsigned int eid, enum enclave_region_type type){
 //   size_t i;
 //   for(i = 0;i < ENCLAVE_REGIONS_MAX; i++){
 //     if(enclaves[eid].regions[i].type == type){
@@ -310,7 +310,7 @@ static unsigned long encl_free_eid(struct enclave* encl)
 //   return -1;
 // }
 
-struct enclave* encl_get(enclave_id eid) {
+struct enclave* encl_get(unsigned int eid) {
     int i;
     for (i = 0; i < ENCLAVES_MAX; i++)
         if (enclaves[i].eid == eid && enclaves[i].state != INVALID)
@@ -323,14 +323,14 @@ int encl_index(struct enclave* encl) {
     return encl ? encl - enclaves : -1;
 }
 
-// uintptr_t get_enclave_region_size(enclave_id eid, int memid) {
+// uintptr_t get_enclave_region_size(unsigned int eid, int memid) {
 //   if (0 <= memid && memid < ENCLAVE_REGIONS_MAX)
 //     return pmp_region_get_size(enclaves[eid].regions[memid].pmp_rid);
 
 //   return 0;
 // }
 
-// uintptr_t get_enclave_region_base(enclave_id eid, int memid) {
+// uintptr_t get_enclave_region_base(unsigned int eid, int memid) {
 //   if (0 <= memid && memid < ENCLAVE_REGIONS_MAX)
 //     return pmp_region_get_addr(enclaves[eid].regions[memid].pmp_rid);
 
@@ -443,7 +443,7 @@ static int buffer_in_encl_region(struct enclave* enclave,
     if (buffer_in_region(&enclave->epm, start, size) ||
             buffer_in_region(&enclave->utm, start, size))
         return 1;
-    enclave_id eid = enclave->eid;
+    unsigned int eid = enclave->eid;
     int i;
     /* Check if the source is in a valid region */
     for (i = 0; i < REGIONS_MAX; i++) {
@@ -598,7 +598,7 @@ unsigned long create_enclave(unsigned long *eidptr, struct keystone_sbi_create c
   uintptr_t utbase = create_args.utm_region.paddr;
   size_t utsize = create_args.utm_region.size;
 
-  enclave_id eid;
+  unsigned int eid;
   unsigned long ret;
   int region = -1, shared_region = -1;
 
@@ -747,7 +747,7 @@ static uintptr_t remove_region(struct region* region, int dry) {
  * Deallocates EID, clears epm, etc
  * Fails only if the enclave isn't running.
  */
-unsigned long destroy_enclave(enclave_id eid, struct enclave_shm_list* shm_list) {
+unsigned long destroy_enclave(unsigned int eid, struct enclave_shm_list* shm_list) {
   int destroyable;
 
   memset(shm_list, 0, sizeof(struct enclave_shm_list));
@@ -826,7 +826,7 @@ destory_failure:
 }
 
 
-unsigned long run_enclave(struct sbi_trap_regs *regs, enclave_id eid)
+unsigned long run_enclave(struct sbi_trap_regs *regs, unsigned int eid)
 {
   int runable;
 
@@ -853,7 +853,7 @@ unsigned long run_enclave(struct sbi_trap_regs *regs, enclave_id eid)
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-unsigned long exit_enclave(struct sbi_trap_regs *regs, enclave_id eid) {
+unsigned long exit_enclave(struct sbi_trap_regs *regs, unsigned int eid) {
   int exitable;
 
   ipi_acquire_lock(&encl_lock);
@@ -882,7 +882,7 @@ unsigned long exit_enclave(struct sbi_trap_regs *regs, enclave_id eid) {
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-unsigned long stop_enclave(struct sbi_trap_regs *regs, uint64_t request, enclave_id eid) {
+unsigned long stop_enclave(struct sbi_trap_regs *regs, uint64_t request, unsigned int eid) {
   int stoppable;
 
   ipi_acquire_lock(&encl_lock);
@@ -1017,7 +1017,7 @@ static unsigned long finish_request_response(uintptr_t* host_regs, struct enclav
     return ret;
 }
 
-unsigned long resume_enclave(struct sbi_trap_regs *regs, enclave_id eid) {
+unsigned long resume_enclave(struct sbi_trap_regs *regs, unsigned int eid) {
   int resumable;
 
   ipi_acquire_lock(&encl_lock);
@@ -1047,7 +1047,7 @@ unsigned long resume_enclave(struct sbi_trap_regs *regs, enclave_id eid) {
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-unsigned long attest_enclave(uintptr_t report_ptr, uintptr_t data, uintptr_t size, enclave_id eid)
+unsigned long attest_enclave(uintptr_t report_ptr, uintptr_t data, uintptr_t size, unsigned int eid)
 {
   int attestable;
   struct report report;
@@ -1107,7 +1107,7 @@ err_unlock:
 }
 
 // lend the region to another enclave
-static unsigned long elasticlave_change_unlocked(enclave_id eid, uid_t uid, dyn_perm_t dyn_perm) {
+static unsigned long elasticlave_change_unlocked(unsigned int eid, uid_t uid, dyn_perm_t dyn_perm) {
   struct enclave* encl = encl_get(eid);
 
   if (!ENCLAVE_EXISTS(encl))
@@ -1151,14 +1151,14 @@ elasticlave_change_fail:
   return SBI_ERR_SM_ENCLAVE_ILLEGAL_ARGUMENT;
 }
 
-unsigned long elasticlave_change(enclave_id eid, uid_t uid, dyn_perm_t dyn_perm) {
+unsigned long elasticlave_change(unsigned int eid, uid_t uid, dyn_perm_t dyn_perm) {
   ipi_acquire_lock(&encl_lock);
   enclave_ret_code ret = elasticlave_change_unlocked(eid, uid, dyn_perm);
   ipi_release_lock(&encl_lock);
   return ret;
 }
 
-unsigned long elasticlave_map(enclave_id eid, uid_t uid,
+unsigned long elasticlave_map(unsigned int eid, uid_t uid,
         uintptr_t* ret_paddr, uintptr_t* ret_size){
   int i;
   ipi_acquire_lock(&encl_lock);
@@ -1190,7 +1190,7 @@ elasticlave_map_fail:
     return SBI_ERR_SM_ENCLAVE_ILLEGAL_ARGUMENT;
 }
 
-enclave_ret_code elasticlave_unmap(enclave_id eid, uid_t uid){
+enclave_ret_code elasticlave_unmap(unsigned int eid, uid_t uid){
   int i;
 
   ipi_acquire_lock(&encl_lock);
@@ -1221,9 +1221,9 @@ elasticlave_unmap_fail:
 }
 
 unsigned long elasticlave_share(
-        enclave_id eid, // issuing enclave, not passed to sm as arg
+        unsigned int eid, // issuing enclave, not passed to sm as arg
         uid_t uid,
-        enclave_id oeid,
+        unsigned int oeid,
         st_perm_t st_perm) {
 
   if (st_perm == PERM_NULL) // doesn't allow sharing with null permissions
@@ -1253,9 +1253,9 @@ unsigned long elasticlave_share(
 }
 
 unsigned long elasticlave_transfer(
-        enclave_id eid,
+        unsigned int eid,
         uid_t uid,
-        enclave_id oeid) {
+        unsigned int oeid) {
 
   if (eid == oeid)
     return SBI_ERR_SM_ENCLAVE_ILLEGAL_ARGUMENT;
@@ -1292,7 +1292,7 @@ unsigned long elasticlave_transfer(
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-enclave_ret_code elasticlave_destroy(enclave_id eid, uid_t uid, uintptr_t* paddr) {
+enclave_ret_code elasticlave_destroy(unsigned int eid, uid_t uid, uintptr_t* paddr) {
   struct enclave* encl = encl_get(eid);
   struct region* region = get_region_by_uid(shared_regions, REGIONS_MAX, uid);
 
@@ -1309,7 +1309,7 @@ enclave_ret_code elasticlave_destroy(enclave_id eid, uid_t uid, uintptr_t* paddr
 }
 
 
-unsigned long elasticlave_region_events(enclave_id eid, uintptr_t event_buf, 
+unsigned long elasticlave_region_events(unsigned int eid, uintptr_t event_buf, 
         uintptr_t count_ptr, 
         int count_lim) {
   struct enclave* encl = encl_get(eid);
@@ -1337,7 +1337,7 @@ unsigned long elasticlave_region_events(enclave_id eid, uintptr_t event_buf,
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-void setup_enclave_request(enclave_id eid, enum enclave_request_type request_type, 
+void setup_enclave_request(unsigned int eid, enum enclave_request_type request_type, 
         uintptr_t* host_args, int num, ...) {
   ipi_acquire_lock(&encl_lock);
 
@@ -1420,7 +1420,7 @@ int install_regev_notify(uintptr_t ptr) {
 }
 
 // unsigned long get_sealing_key(uintptr_t sealing_key, uintptr_t key_ident,
-//                                  size_t key_ident_size, enclave_id eid)
+//                                  size_t key_ident_size, unsigned int eid)
 // {
 //   struct sealing_key *key_struct = (struct sealing_key *)sealing_key;
 //   int ret;

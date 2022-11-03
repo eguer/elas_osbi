@@ -1,0 +1,4 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/sbi/riscv_locks.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/sbi/riscv_locks.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_barrier.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_locks.h

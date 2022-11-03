@@ -1,0 +1,6 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/serial/uart8250.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/serial/uart8250.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_io.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_barrier.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/serial/uart8250.h

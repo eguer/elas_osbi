@@ -1,0 +1,1 @@
+/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc -Wall -Werror  -nostdlib -static -T /home/elisa/Desktop/elas_osbi/sdk/examples/tests/app.lds CMakeFiles/untrusted.dir/untrusted/untrusted.c.o CMakeFiles/untrusted.dir/untrusted/edge_wrapper.c.o  -o untrusted  ../../../sdk/build64/lib/libkeystone-eapp.a ../../../sdk/build64/lib/libkeystone-edge.a 

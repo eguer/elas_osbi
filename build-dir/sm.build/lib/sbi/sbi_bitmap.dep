@@ -1,0 +1,5 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/sbi/sbi_bitmap.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/sbi/sbi_bitmap.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitmap.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitops.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h

@@ -1,0 +1,13 @@
+# Target labels
+ eyrie-test-eyrie
+# Source files and their labels
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/CMakeFiles/eyrie-test-eyrie
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/CMakeFiles/eyrie-test-eyrie.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/CMakeFiles/eyrie-test-eyrie-complete.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-install.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-mkdir.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-download.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-update.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-patch.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-configure.rule
+/home/elisa/Desktop/elas_osbi/build-dir/examples/tests/runtime/src/eyrie-test-eyrie-stamp/eyrie-test-eyrie-build.rule

@@ -122,12 +122,12 @@ unsigned long sbi_sm_print_rt_stats(unsigned long eid, uintptr_t tmp_stats_paddr
 	return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }
 
-unsigned long sbi_sm_elasticlave_change(__u64 uid, __u64 perm) {
+unsigned long sbi_sm_elasticlave_change(unsigned long uid, unsigned long perm) {
 	enclave_id eid = cpu_is_enclave_context() ? cpu_get_enclave_id() : EID_UNTRUSTED;
-	return elasticlave_change(eid, (uid_t)uid, (dyn_perm_t)perm);
+	return elasticlave_change(eid, (unsigned int)uid, (dyn_perm_t)perm);
 }
 
-unsigned long sbi_sm_elasticlave_create(uintptr_t pa, __u64 size, unsigned long uid) {
+unsigned long sbi_sm_elasticlave_create(uintptr_t pa, unsigned long size, unsigned long uid) {
 	unsigned long ret;
 	/* only an enclave itself can call this SBI */
 	if (!cpu_is_enclave_context()) {
@@ -157,7 +157,7 @@ unsigned long sbi_sm_elasticlave_host_create(uintptr_t pa, uintptr_t size, uintp
   return ret;
 }
 
-unsigned long sbi_sm_elasticlave_map(uid_t uid, uintptr_t pa_addr, uintptr_t pa_size) {
+unsigned long sbi_sm_elasticlave_map(unsigned int uid, uintptr_t pa_addr, uintptr_t pa_size) {
 	unsigned long ret;
 	// both the untrusted code and other enclaves can call this
 
@@ -189,7 +189,7 @@ unsigned long sbi_sm_elasticlave_unmap(uintptr_t mem_mappings_uid) {
 	return ret;
 }
 
-unsigned long sbi_sm_elasticlave_destroy(uid_t uid) {
+unsigned long sbi_sm_elasticlave_destroy(unsigned int uid) {
 	enclave_id eid = cpu_get_enclave_id();
 
 	uintptr_t paddr = 0;

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/CMakeFiles/eyrie-hello-eyrie"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/CMakeFiles/eyrie-hello-eyrie.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/CMakeFiles/eyrie-hello-eyrie-complete.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-install.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-mkdir.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-download.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-update.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-patch.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-configure.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello/runtime/src/eyrie-hello-eyrie-stamp/eyrie-hello-eyrie-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"eyrie-hello-eyrie"
+		],
+		"name" : "eyrie-hello-eyrie"
+	}
+}

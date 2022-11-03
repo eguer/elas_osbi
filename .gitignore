@@ -4,3 +4,4 @@
 build/
 riscv/
 riscv64/
+build-dir/

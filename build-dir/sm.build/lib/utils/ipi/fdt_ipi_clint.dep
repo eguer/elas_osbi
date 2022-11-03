@@ -1,0 +1,8 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/ipi/fdt_ipi_clint.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/ipi/fdt_ipi_clint.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_error.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_helper.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/ipi/fdt_ipi.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/sys/clint.h

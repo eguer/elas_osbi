@@ -1,0 +1,7 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/sys/sifive_test.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/sys/sifive_test.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_io.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_barrier.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/sys/sifive_test.h

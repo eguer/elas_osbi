@@ -1,0 +1,30 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/platform.o: /home/elisa/Desktop/elas_osbi/sm/plat//generic/platform.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt_env.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_string.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/fdt.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/include/platform_override.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_hartmask.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitmap.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitops.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_platform.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_error.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_scratch.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_version.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_domain.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_fixup.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_helper.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/irqchip/fdt_irqchip.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/serial/fdt_serial.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/timer/fdt_timer.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/ipi/fdt_ipi.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/reset/fdt_reset.h \
+ ../src/sm.h ../src/pmp.h ../src/sm.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_atomic.h \
+ ../src/sm-sbi.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_trap.h

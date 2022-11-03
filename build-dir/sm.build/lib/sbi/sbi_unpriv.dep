@@ -1,0 +1,11 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/sbi/sbi_unpriv.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/sbi/sbi_unpriv.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_bitops.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_hart.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_scratch.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_trap.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_unpriv.h

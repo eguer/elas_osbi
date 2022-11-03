@@ -1,0 +1,221 @@
+The system is: Linux - 5.15.0-46-generic - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/3.16.3/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ea889/fast && make[1]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ea889.dir/build.make CMakeFiles/cmTC_ea889.dir/build
+make[2]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ea889.dir/testCCompiler.c.o
+/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc    -o CMakeFiles/cmTC_ea889.dir/testCCompiler.c.o   -c /home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_ea889
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea889.dir/link.txt --verbose=1
+/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc      CMakeFiles/cmTC_ea889.dir/testCCompiler.c.o  -o cmTC_ea889 
+make[2]: Leaving directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_4a12c/fast && make[1]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4a12c.dir/build.make CMakeFiles/cmTC_4a12c.dir/build
+make[2]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o
+/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc   -v -o CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc
+Target: riscv64-unknown-linux-gnu
+Configured with: /home/ubuntu/keystone/riscv-gnu-toolchain/riscv-gcc/configure --target=riscv64-unknown-linux-gnu --prefix=/home/ubuntu/keystone/riscv64 --with-sysroot=/home/ubuntu/keystone/riscv64/sysroot --with-system-zlib --enable-shared --enable-tls --enable-languages=c,c++,fortran --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libsanitizer --disable-nls --disable-bootstrap --src=.././riscv-gcc --disable-multilib --with-abi=lp64d --with-arch=rv64gc --with-tune=rocket 'CFLAGS_FOR_TARGET=-O2   -mcmodel=medlow' 'CXXFLAGS_FOR_TARGET=-O2   -mcmodel=medlow'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc'
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/cc1 -quiet -v -iprefix /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/ -isysroot /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=rocket -march=rv64gc -mabi=lp64d -march=rv64imafdc -auxbase-strip CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccw6YnRn.s
+GNU C17 (GCC) version 10.2.0 (riscv64-unknown-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version none
+warning: GMP header version 6.1.2 differs from library version 6.2.0.
+warning: MPFR header version 4.0.1 differs from library version 4.0.2.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include"
+ignoring nonexistent directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/local/include"
+ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed"
+ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/include
+End of search list.
+GNU C17 (GCC) version 10.2.0 (riscv64-unknown-linux-gnu)
+	compiled by GNU C version 7.5.0, GMP version 6.1.2, MPFR version 4.0.1, MPC version 1.1.0, isl version none
+warning: GMP header version 6.1.2 differs from library version 6.2.0.
+warning: MPFR header version 4.0.1 differs from library version 4.0.2.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 109798c0216c8414a861d3eb1cefa1c9
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc'
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/as -v --traditional-format -march=rv64gc -march=rv64imafdc -mabi=lp64d -o CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o /tmp/ccw6YnRn.s
+GNU assembler version 2.35 (riscv64-unknown-linux-gnu) using BFD version (GNU Binutils) 2.35
+COMPILER_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/
+LIBRARY_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc'
+Linking C executable cmTC_4a12c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a12c.dir/link.txt --verbose=1
+/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o  -o cmTC_4a12c 
+Using built-in specs.
+COLLECT_GCC=/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc
+COLLECT_LTO_WRAPPER=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/lto-wrapper
+Target: riscv64-unknown-linux-gnu
+Configured with: /home/ubuntu/keystone/riscv-gnu-toolchain/riscv-gcc/configure --target=riscv64-unknown-linux-gnu --prefix=/home/ubuntu/keystone/riscv64 --with-sysroot=/home/ubuntu/keystone/riscv64/sysroot --with-system-zlib --enable-shared --enable-tls --enable-languages=c,c++,fortran --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libsanitizer --disable-nls --disable-bootstrap --src=.././riscv-gcc --disable-multilib --with-abi=lp64d --with-arch=rv64gc --with-tune=rocket 'CFLAGS_FOR_TARGET=-O2   -mcmodel=medlow' 'CXXFLAGS_FOR_TARGET=-O2   -mcmodel=medlow'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COMPILER_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/
+LIBRARY_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4a12c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc'
+ /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/collect2 -plugin /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKX9GIO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot --eh-frame-hdr -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -o cmTC_4a12c /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/crt1.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crti.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtbegin.o -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0 -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtend.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4a12c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc'
+make[2]: Leaving directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include]
+    add: [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed]
+    add: [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include]
+    add: [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/include]
+  end of search list found
+  collapse include dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include] ==> [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include]
+  collapse include dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed] ==> [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed]
+  collapse include dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include] ==> [/home/elisa/Desktop/elas_osbi/riscv64/riscv64-unknown-linux-gnu/include]
+  collapse include dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/include] ==> [/home/elisa/Desktop/elas_osbi/riscv64/sysroot/usr/include]
+  implicit include dirs: [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include;/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed;/home/elisa/Desktop/elas_osbi/riscv64/riscv64-unknown-linux-gnu/include;/home/elisa/Desktop/elas_osbi/riscv64/sysroot/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/make cmTC_4a12c/fast && make[1]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4a12c.dir/build.make CMakeFiles/cmTC_4a12c.dir/build]
+  ignore line: [make[2]: Entering directory '/home/elisa/Desktop/elas_osbi/build-dir/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc   -v -o CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc]
+  ignore line: [Target: riscv64-unknown-linux-gnu]
+  ignore line: [Configured with: /home/ubuntu/keystone/riscv-gnu-toolchain/riscv-gcc/configure --target=riscv64-unknown-linux-gnu --prefix=/home/ubuntu/keystone/riscv64 --with-sysroot=/home/ubuntu/keystone/riscv64/sysroot --with-system-zlib --enable-shared --enable-tls --enable-languages=c c++ fortran --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libsanitizer --disable-nls --disable-bootstrap --src=.././riscv-gcc --disable-multilib --with-abi=lp64d --with-arch=rv64gc --with-tune=rocket 'CFLAGS_FOR_TARGET=-O2   -mcmodel=medlow' 'CXXFLAGS_FOR_TARGET=-O2   -mcmodel=medlow']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc']
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/cc1 -quiet -v -iprefix /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/ -isysroot /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot /usr/share/cmake-3.16/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=rocket -march=rv64gc -mabi=lp64d -march=rv64imafdc -auxbase-strip CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccw6YnRn.s]
+  ignore line: [GNU C17 (GCC) version 10.2.0 (riscv64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version none]
+  ignore line: [warning: GMP header version 6.1.2 differs from library version 6.2.0.]
+  ignore line: [warning: MPFR header version 4.0.1 differs from library version 4.0.2.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include"]
+  ignore line: [ignoring nonexistent directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed"]
+  ignore line: [ignoring duplicate directory "/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include]
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/include-fixed]
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/include]
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (GCC) version 10.2.0 (riscv64-unknown-linux-gnu)]
+  ignore line: [	compiled by GNU C version 7.5.0  GMP version 6.1.2  MPFR version 4.0.1  MPC version 1.1.0  isl version none]
+  ignore line: [warning: GMP header version 6.1.2 differs from library version 6.2.0.]
+  ignore line: [warning: MPFR header version 4.0.1 differs from library version 4.0.2.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 109798c0216c8414a861d3eb1cefa1c9]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc']
+  ignore line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/as -v --traditional-format -march=rv64gc -march=rv64imafdc -mabi=lp64d -o CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o /tmp/ccw6YnRn.s]
+  ignore line: [GNU assembler version 2.35 (riscv64-unknown-linux-gnu) using BFD version (GNU Binutils) 2.35]
+  ignore line: [COMPILER_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc']
+  ignore line: [Linking C executable cmTC_4a12c]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4a12c.dir/link.txt --verbose=1]
+  ignore line: [/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc     -v CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o  -o cmTC_4a12c ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/lto-wrapper]
+  ignore line: [Target: riscv64-unknown-linux-gnu]
+  ignore line: [Configured with: /home/ubuntu/keystone/riscv-gnu-toolchain/riscv-gcc/configure --target=riscv64-unknown-linux-gnu --prefix=/home/ubuntu/keystone/riscv64 --with-sysroot=/home/ubuntu/keystone/riscv64/sysroot --with-system-zlib --enable-shared --enable-tls --enable-languages=c c++ fortran --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libsanitizer --disable-nls --disable-bootstrap --src=.././riscv-gcc --disable-multilib --with-abi=lp64d --with-arch=rv64gc --with-tune=rocket 'CFLAGS_FOR_TARGET=-O2   -mcmodel=medlow' 'CXXFLAGS_FOR_TARGET=-O2   -mcmodel=medlow']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/bin/]
+  ignore line: [LIBRARY_PATH=/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib/:/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4a12c' '-mtune=rocket' '-march=rv64gc' '-mabi=lp64d' '-march=rv64imafdc']
+  link line: [ /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/collect2 -plugin /home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccKX9GIO.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot --eh-frame-hdr -melf64lriscv -dynamic-linker /lib/ld-linux-riscv64-lp64d.so.1 -o cmTC_4a12c /home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/crt1.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crti.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtbegin.o -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0 -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib -L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtend.o /home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtn.o]
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/home/elisa/Desktop/elas_osbi/riscv64/bin/../libexec/gcc/riscv64-unknown-linux-gnu/10.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccKX9GIO.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--sysroot=/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-melf64lriscv] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-linux-riscv64-lp64d.so.1] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_4a12c] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib/crt1.o] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crti.o] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtbegin.o] ==> ignore
+    arg [-L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0] ==> dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0]
+    arg [-L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc] ==> dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc]
+    arg [-L/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib] ==> dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib]
+    arg [-L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib] ==> dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib]
+    arg [-L/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib] ==> dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib]
+    arg [CMakeFiles/cmTC_4a12c.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--push-state] ==> ignore
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--pop-state] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtend.o] ==> ignore
+    arg [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/crtn.o] ==> ignore
+  collapse library dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0] ==> [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0]
+  collapse library dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc] ==> [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc]
+  collapse library dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../lib/gcc/riscv64-unknown-linux-gnu/10.2.0/../../../../riscv64-unknown-linux-gnu/lib] ==> [/home/elisa/Desktop/elas_osbi/riscv64/riscv64-unknown-linux-gnu/lib]
+  collapse library dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/lib] ==> [/home/elisa/Desktop/elas_osbi/riscv64/sysroot/lib]
+  collapse library dir [/home/elisa/Desktop/elas_osbi/riscv64/bin/../sysroot/usr/lib] ==> [/home/elisa/Desktop/elas_osbi/riscv64/sysroot/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc/riscv64-unknown-linux-gnu/10.2.0;/home/elisa/Desktop/elas_osbi/riscv64/lib/gcc;/home/elisa/Desktop/elas_osbi/riscv64/riscv64-unknown-linux-gnu/lib;/home/elisa/Desktop/elas_osbi/riscv64/sysroot/lib;/home/elisa/Desktop/elas_osbi/riscv64/sysroot/usr/lib]
+  implicit fwks: []
+
+

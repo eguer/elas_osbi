@@ -1,0 +1,13 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/sbi/sbi_platform.o: \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/sbi/sbi_platform.c \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_console.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_platform.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_error.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_scratch.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_version.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_string.h

@@ -12,7 +12,11 @@
 #include "sm.h"
 #include "pmp.h"
 #include "thread.h"
+#include "region.h"
 #include "crypto.h"
+#include "performance.h"
+#include "enclave-request.h"
+#include "perm.h"
 
 // Special target platform header, set by configure script
 #include TARGET_PLATFORM_HEADER
@@ -61,7 +65,7 @@ enum region_event_type {
 };
 
 struct region_event {
-	uid_t uid;
+	unsigned int uid;
 	enum region_event_type type;
 };
 
@@ -85,7 +89,7 @@ struct enclave_rt_stats {
 struct enclave
 {
   //spinlock_t lock; //local enclave lock. we don't need this until we have multithreaded enclave
-  enclave_id eid; //enclave id
+  unsigned int eid; //enclave id
   unsigned long encl_satp; // enclave's page table base
   enclave_state state; // global state of the enclave
   int terminated;
@@ -160,54 +164,54 @@ struct enclave_shm_list {
 /*** SBI functions & external functions ***/
 // callables from the host
 unsigned long create_enclave(unsigned long *eid, struct keystone_sbi_create create_args);
-unsigned long destroy_enclave(enclave_id eid, struct enclave_shm_list* shm_list);
-unsigned long run_enclave(struct sbi_trap_regs *regs, enclave_id eid);
-unsigned long resume_enclave(struct sbi_trap_regs *regs, enclave_id eid, uintptr_t resp0, uintptr_t resp1);
+unsigned long destroy_enclave(unsigned int eid, struct enclave_shm_list* shm_list);
+unsigned long run_enclave(struct sbi_trap_regs *regs, unsigned int eid);
+unsigned long resume_enclave(struct sbi_trap_regs *regs, unsigned int eid, uintptr_t resp0, uintptr_t resp1);
 // callables from the enclave
-unsigned long exit_enclave(struct sbi_trap_regs *regs, enclave_id eid, uintptr_t rt_stats_ptr);
-unsigned long stop_enclave(struct sbi_trap_regs *regs, uint64_t request, enclave_id eid);
-unsigned long attest_enclave(uintptr_t report, uintptr_t data, uintptr_t size, enclave_id eid);
-unsigned long elasticlave_change(enclave_id eid, uid_t uid, dyn_perm_t dyn_perm);
-unsigned long elasticlave_map(enclave_id eid, uid_t uid, uintptr_t* ret_paddr, uintptr_t* ret_size);
-unsigned long elasticlave_unmap(enclave_id eid, uid_t uid);
-unsigned long elasticlave_destroy(enclave_id eid, uid_t uid, uintptr_t* paddr);
-unsigned long elasticlave_region_events(enclave_id eid, uintptr_t event_buf, uintptr_t count_ptr, int count_lim);
+unsigned long exit_enclave(struct sbi_trap_regs *regs, unsigned int eid, uintptr_t rt_stats_ptr);
+unsigned long stop_enclave(struct sbi_trap_regs *regs, uint64_t request, unsigned int eid);
+unsigned long attest_enclave(uintptr_t report, uintptr_t data, uintptr_t size, unsigned int eid);
+unsigned long elasticlave_change(unsigned int eid, unsigned int uid, dyn_perm_t dyn_perm);
+unsigned long elasticlave_map(unsigned int eid, unsigned int uid, uintptr_t* ret_paddr, uintptr_t* ret_size);
+unsigned long elasticlave_unmap(unsigned int eid, unsigned int uid);
+unsigned long elasticlave_destroy(unsigned int eid, unsigned int uid, uintptr_t* paddr);
+unsigned long elasticlave_region_events(unsigned int eid, uintptr_t event_buf, uintptr_t count_ptr, int count_lim);
 
 /* attestation and virtual mapping validation */
 unsigned long validate_and_hash_enclave(struct enclave* enclave);
 // TODO: These functions are supposed to be internal functions.
 void enclave_init_metadata();
 unsigned long copy_enclave_create_args(uintptr_t src, struct keystone_sbi_create* dest, size_t size);
-// int get_enclave_region_index(enclave_id eid, enum enclave_region_type type); todo don't need?
-// uintptr_t get_enclave_region_base(enclave_id eid, int memid);
-// uintptr_t get_enclave_region_size(enclave_id eid, int memid);
-// unsigned long get_sealing_key(uintptr_t seal_key, uintptr_t key_ident, size_t key_ident_size, enclave_id eid);
+// int get_enclave_region_index(unsigned int eid, enum enclave_region_type type); todo don't need?
+// uintptr_t get_enclave_region_base(unsigned int eid, int memid);
+// uintptr_t get_enclave_region_size(unsigned int eid, int memid);
+// unsigned long get_sealing_key(uintptr_t seal_key, uintptr_t key_ident, size_t key_ident_size, unsigned int eid);
 
 unsigned long copy_to_enclave(struct enclave* enclave, void* dest, void* source, size_t size);
 unsigned long copy_to_host(void* dest, void* source, size_t size);
-void setup_enclave_request(enclave_id eid, enum enclave_request_type request_type, uintptr_t* host_args, int num, ...);
+void setup_enclave_request(unsigned int eid, enum enclave_request_type request_type, uintptr_t* host_args, int num, ...);
 unsigned long copy_buffer_to_host(uintptr_t* dest_ptr, uintptr_t* src_ptr, unsigned long size);
 size_t copy_string_from_enclave(struct enclave* enclave, char* dest, char* source, size_t max_size);
 size_t copy_string_from_host(char* dest, char* source, size_t max_size);
 void try_terminate_enclave(uintptr_t* regs);
 
-unsigned long elasticlave_share(enclave_id eid, uid_t uid, enclave_id oeid, st_perm_t st_perm);
+unsigned long elasticlave_share(unsigned int eid, unsigned int uid, unsigned int oeid, st_perm_t st_perm);
 
-unsigned long elasticlave_transfer(enclave_id eid, uid_t uid, enclave_id oeid);
+unsigned long elasticlave_transfer(unsigned int eid, unsigned int uid, unsigned int oeid);
 
-struct enclave* encl_get(enclave_id eid);
+struct enclave* encl_get(unsigned int eid);
 
 int encl_index(struct enclave* encl);
 
 // region events
-void region_events_add(uintptr_t enclave_mask, uid_t uid, enum region_event_type type, int send_ipi);
+void region_events_add(uintptr_t enclave_mask, unsigned int uid, enum region_event_type type, int send_ipi);
 void region_ipi_update(int* args);
 void dispatch_events_unlocked();
 void region_events_pop(struct enclave* enclave, int count);
 
 unsigned long _elasticlave_create(struct enclave* encl, uintptr_t paddr, void* uid_ret, uintptr_t size);
 
-static inline enclave_id encl_eid(struct enclave* encl) {
+static inline unsigned int encl_eid(struct enclave* encl) {
   if(encl == NULL)
     return EID_UNTRUSTED;
   return encl->eid;

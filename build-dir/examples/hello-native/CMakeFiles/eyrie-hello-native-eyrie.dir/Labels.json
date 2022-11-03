@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/CMakeFiles/eyrie-hello-native-eyrie"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/CMakeFiles/eyrie-hello-native-eyrie.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/CMakeFiles/eyrie-hello-native-eyrie-complete.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-install.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-mkdir.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-download.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-update.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-patch.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-configure.rule"
+		},
+		{
+			"file" : "/home/elisa/Desktop/elas_osbi/build-dir/examples/hello-native/runtime/src/eyrie-hello-native-eyrie-stamp/eyrie-hello-native-eyrie-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"eyrie-hello-native-eyrie"
+		],
+		"name" : "eyrie-hello-native-eyrie"
+	}
+}

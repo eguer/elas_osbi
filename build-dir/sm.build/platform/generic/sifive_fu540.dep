@@ -1,0 +1,6 @@
+/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/sifive_fu540.o: \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/sifive_fu540.c \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/include/platform_override.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_helper.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_fixup.h
