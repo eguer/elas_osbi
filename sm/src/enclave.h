@@ -46,6 +46,8 @@ typedef enum {
 #define EID_UNTRUSTED	0
 
 /* For now, eid's are a simple unsigned int */
+typedef unsigned int enclave_id;
+
 extern struct region shared_regions[];
 
 struct enclave_stats {
@@ -181,13 +183,14 @@ unsigned long elasticlave_region_events(unsigned int eid, uintptr_t event_buf, u
 unsigned long validate_and_hash_enclave(struct enclave* enclave);
 // TODO: These functions are supposed to be internal functions.
 void enclave_init_metadata();
-unsigned long copy_enclave_create_args(uintptr_t src, struct keystone_sbi_create* dest, size_t size);
+// unsigned long copy_enclave_create_args(uintptr_t src, struct keystone_sbi_create* dest);
 // int get_enclave_region_index(unsigned int eid, enum enclave_region_type type); todo don't need?
 // uintptr_t get_enclave_region_base(unsigned int eid, int memid);
 // uintptr_t get_enclave_region_size(unsigned int eid, int memid);
 // unsigned long get_sealing_key(uintptr_t seal_key, uintptr_t key_ident, size_t key_ident_size, unsigned int eid);
 
 unsigned long copy_to_enclave(struct enclave* enclave, void* dest, void* source, size_t size);
+unsigned long copy_from_host(void* source, void* dest, size_t size);
 unsigned long copy_to_host(void* dest, void* source, size_t size);
 void setup_enclave_request(unsigned int eid, enum enclave_request_type request_type, uintptr_t* host_args, int num, ...);
 unsigned long copy_buffer_to_host(uintptr_t* dest_ptr, uintptr_t* src_ptr, unsigned long size);

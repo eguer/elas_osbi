@@ -10,9 +10,15 @@
  /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/enclave.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/thread.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/region.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/perm.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/consts.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_locks.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/crypto.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/sha3/sha3.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/ed25519/ed25519.h \
  /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/hkdf_sha3_512/hkdf_sha3_512.h \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/platform/generic/platform.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/performance.h \
+ /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/enclave-request.h \
+ /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/platform/generic/platform.h

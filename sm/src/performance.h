@@ -1,8 +1,9 @@
 #ifndef __PERFORMANCE_H
 #define __PERFORMANCE_H
 
-#include "encoding.h"
 #include "sm.h"
+#include <sbi/riscv_asm.h>
+#include <sbi/riscv_encoding.h>
 
 struct performance_stats {
 	unsigned long total_cycle;
@@ -17,11 +18,11 @@ inline static void performance_stats_init(struct performance_stats* stats){
 }
 
 inline static void performance_check_start(struct performance_stats* stats){
-	stats->total_cycle -= rdcycle();
+	stats->total_cycle -= csr_read(CSR_CYCLE);
 }
 
 inline static void performance_check_end(struct performance_stats* stats){
-	stats->total_cycle += rdcycle();
+	stats->total_cycle += csr_read(CSR_CYCLE);
 }
 
 inline static void performance_count(struct performance_stats* stats){

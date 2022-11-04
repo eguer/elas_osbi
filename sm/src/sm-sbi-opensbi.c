@@ -38,14 +38,14 @@ static int sbi_ecall_keystone_enclave_handler(unsigned long extid, unsigned long
       retval = sbi_sm_create_enclave(out_val, regs->a0);
       break;
     case SBI_SM_DESTROY_ENCLAVE:
-      retval = sbi_sm_destroy_enclave(regs->a0);
+      retval = sbi_sm_destroy_enclave(regs->a0, regs->a1);
       break;
     case SBI_SM_RUN_ENCLAVE:
       retval = sbi_sm_run_enclave((struct sbi_trap_regs*) regs, regs->a0);
       __builtin_unreachable();
       break;
     case SBI_SM_RESUME_ENCLAVE:
-      retval = sbi_sm_resume_enclave((struct sbi_trap_regs*) regs, regs->a0);
+      retval = sbi_sm_resume_enclave((struct sbi_trap_regs*) regs, regs->a0, regs->a2, regs->a3);
       __builtin_unreachable();
       break;
     case SBI_SM_RANDOM:
@@ -55,15 +55,15 @@ static int sbi_ecall_keystone_enclave_handler(unsigned long extid, unsigned long
     case SBI_SM_ATTEST_ENCLAVE:
       retval = sbi_sm_attest_enclave(regs->a0, regs->a1, regs->a2);
       break;
-    case SBI_SM_GET_SEALING_KEY:
-      retval = sbi_sm_get_sealing_key(regs->a0, regs->a1, regs->a2);
-      break;
+    // case SBI_SM_GET_SEALING_KEY:
+    //   retval = sbi_sm_get_sealing_key(regs->a0, regs->a1, regs->a2);
+    //   break;
     case SBI_SM_STOP_ENCLAVE:
       retval = sbi_sm_stop_enclave((struct sbi_trap_regs*) regs, regs->a0);
       __builtin_unreachable();
       break;
     case SBI_SM_EXIT_ENCLAVE:
-      retval = sbi_sm_exit_enclave((struct sbi_trap_regs*) regs, regs->a0);
+      retval = sbi_sm_exit_enclave((struct sbi_trap_regs*) regs, regs->a0, regs->a1);
       __builtin_unreachable();
       break;
     case SBI_SM_CALL_PLUGIN:
@@ -71,48 +71,45 @@ static int sbi_ecall_keystone_enclave_handler(unsigned long extid, unsigned long
       break;
   case SBI_SM_ELASTICLAVE_CREATE:
     if(cpu_is_enclave_context())
-      retval = sbi_sm_elasticlave_create(regs, arg0);
+      retval = sbi_sm_elasticlave_create((struct sbi_trap_regs *)regs, regs->a0);
     else
-      retval = sbi_sm_elasticlave_host_create(arg0, arg1, arg2);
+      retval = sbi_sm_elasticlave_host_create(regs->a0, regs->a1, regs->a2);
     break;
   case SBI_SM_ELASTICLAVE_CHANGE:
-    retval = sbi_sm_elasticlave_change(arg0, arg1);
+    retval = sbi_sm_elasticlave_change(regs->a0, regs->a1);
     break;
 	case SBI_SM_ELASTICLAVE_MAP:
 	  // arg0: uid
 	  // arg1: paddr
 	  // arg2: size
-	  retval = sbi_sm_elasticlave_map((uid_t)arg0, (uintptr_t*)arg1, (uintptr_t*)arg2);
+	  retval = sbi_sm_elasticlave_map((unsigned int)regs->a0, (uintptr_t *)regs->a1, (uintptr_t *)regs->a2);
 	  break;
 	case SBI_SM_ELASTICLAVE_UNMAP:
-	  retval = sbi_sm_elasticlave_unmap((uid_t)arg0);
+	  retval = sbi_sm_elasticlave_unmap((uintptr_t)regs->a0);
 	  break;
 	case SBI_SM_ELASTICLAVE_SHARE:
-	  retval = sbi_sm_elasticlave_share((uid_t)arg0, (enclave_id)arg1, (st_perm_t)arg2);
+	  retval = sbi_sm_elasticlave_share((uintptr_t)regs->a0, (uintptr_t)regs->a1, (uintptr_t)regs->a2);
 	  break;
 	case SBI_SM_ELASTICLAVE_TRANSFER:
-	  retval = sbi_sm_elasticlave_transfer((uid_t)arg0, (enclave_id)arg1);
+	  retval = sbi_sm_elasticlave_transfer((uintptr_t)regs->a0, (uintptr_t)regs->a1);
 	  break;
 	case SBI_SM_ELASTICLAVE_DESTROY:
-	  retval = sbi_sm_elasticlave_destroy(regs, (uid_t)arg0);
+	  retval = sbi_sm_elasticlave_destroy((struct sbi_trap_regs *)regs, (unsigned int)regs->a0);
 	  break;
 	case SBI_SM_ELASTICLAVE_REGION_EVENTS:
 	  // arg0: buffer for receiving events
 	  // arg1: buffer for receiving count
 	  // arg2: count limit
-    retval = sbi_sm_elasticlave_region_events(arg0, arg1, arg2);
+    retval = sbi_sm_elasticlave_region_events((uintptr_t)regs->a0, (uintptr_t)regs->a1, (uintptr_t)regs->a2);
       break;
   case SBI_SM_ELASTICLAVE_INSTALL_REGEV:
-    retval = sbi_sm_elasticlave_install_regev(arg0);
-    break;
-  case SBI_SM_CALL_PLUGIN:
-    retval = sbi_sm_call_plugin(arg0, arg1, arg2, arg3);
+    retval = sbi_sm_elasticlave_install_regev((uintptr_t)regs->a0);
     break;
 	case SBI_SM_PRINT_STATS:
-	  retval = sbi_sm_print_stats((unsigned long)arg0, (void*)arg1);
+	  retval = sbi_sm_print_stats((unsigned long)regs->a0, (void *)regs->a1);
 	  break;
 	case SBI_SM_PRINT_RT_STATS:
-	  retval = sbi_sm_print_rt_stats((unsigned long)arg0, (void*)arg1);
+	  retval = sbi_sm_print_rt_stats((unsigned long)regs->a0, (void *)regs->a1);
     break;
   default:
     retval = SBI_ERR_SM_NOT_IMPLEMENTED;

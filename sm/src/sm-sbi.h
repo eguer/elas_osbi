@@ -15,46 +15,46 @@ unsigned long
 sbi_sm_create_enclave(unsigned long *out_val, uintptr_t create_args);
 
 unsigned long
-sbi_sm_destroy_enclave(unsigned long eid);
+sbi_sm_destroy_enclave(unsigned long eid, uintptr_t shm_list);
 
 unsigned long
 sbi_sm_run_enclave(struct sbi_trap_regs *regs, unsigned long eid);
 
 unsigned long
-sbi_sm_exit_enclave(struct sbi_trap_regs *regs, unsigned long retval);
+sbi_sm_exit_enclave(struct sbi_trap_regs *regs, unsigned long retval, uintptr_t rt_stats_ptr);
 
 unsigned long
 sbi_sm_stop_enclave(struct sbi_trap_regs *regs, unsigned long request);
 
 unsigned long
-sbi_sm_resume_enclave(struct sbi_trap_regs *regs, unsigned long eid);
+sbi_sm_resume_enclave(struct sbi_trap_regs *regs, unsigned long eid, uintptr_t resp0, uintptr_t resp1);
 
 unsigned long
 sbi_sm_attest_enclave(uintptr_t report, uintptr_t data, uintptr_t size);
 
 unsigned long
-sbi_sm_print_stats(unsigned long eid, uintptr_t tmp_stats_paddr);
+sbi_sm_print_stats(unsigned long eid, void *ret_paddr);
 
 unsigned long
-sbi_sm_print_rt_stats(unsigned long eid, uintptr_t tmp_stats_paddr);
+sbi_sm_print_rt_stats(unsigned long eid, void *ret_ptr);
 
 unsigned long
-sbi_sm_elasticlave_change(unsigned int uid, unsigned long perm);
+sbi_sm_elasticlave_change(uintptr_t uid, uintptr_t perm);
 
 unsigned long
-sbi_sm_elasticlave_create(uintptr_t pa, unsigned long size, unsigned long uid);
+sbi_sm_elasticlave_create(struct sbi_trap_regs *encl_regs, uintptr_t size);
 
 unsigned long 
 sbi_sm_elasticlave_host_create(uintptr_t pa, uintptr_t size, uintptr_t uid_ret);
 
 unsigned long
-sbi_sm_elasticlave_map(unsigned int uid, uintptr_t pa_addr, uintptr_t pa_size);
+sbi_sm_elasticlave_map(unsigned int uid, uintptr_t *pa_addr, uintptr_t *pa_size);
 
 unsigned long 
 sbi_sm_elasticlave_unmap(uintptr_t mem_mappings_uid);
 
 unsigned long
-sbi_sm_elasticlave_destroy(unsigned int uid);
+sbi_sm_elasticlave_destroy(struct sbi_trap_regs *regs, unsigned int uid);
 
 unsigned long
 sbi_sm_elasticlave_transfer(uintptr_t uid, uintptr_t eid);
@@ -63,7 +63,7 @@ unsigned long
 sbi_sm_elasticlave_share(uintptr_t uid, uintptr_t eid, uintptr_t perm);
 
 unsigned long
-sbi_sm_elasticlave_region_events(uintptr_t event_buf, uintptr_t count_ptr, uintptr_t count_lim); ///////
+sbi_sm_elasticlave_region_events(uintptr_t event_buf, uintptr_t count_ptr, uintptr_t count_lim); /////// TODO needed?
 
 unsigned long
 sbi_sm_elasticlave_install_regev(uintptr_t regev_notify);

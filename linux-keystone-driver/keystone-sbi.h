@@ -2,10 +2,13 @@
 // Copyright (c) 2018, The Regents of the University of California (Regents).
 // All Rights Reserved. See LICENSE for license details.
 //------------------------------------------------------------------------------
-#ifndef _KEYSTONE_SBI_H_
-#define _KEYSTONE_SBI_H_
+#ifndef _KEYSTONE_SBI_
+#define _KEYSTONE_SBI_
 
 #include "keystone_user.h"
+#include <asm/sbi.h>
+
+#define KEYSTONE_SBI_EXT_ID  0x08424b45
 
 #define REGION_MODE_R 1
 #define REGION_MODE_W 2

@@ -63,6 +63,9 @@
 #define SBI_ERR_SM_ENCLAVE_ILLEGAL_PTE                 100015
 #define SBI_ERR_SM_ENCLAVE_NOT_FRESH                   100016
 #define SBI_ERR_SM_ENCLAVE_REGION_MAX_REACHED          100017 // NEW!
+#define SBI_ERR_SM_ENCLAVE_YIELDED                     100018
+#define SBI_ERR_SM_ENCLAVE_CALL_RETURN                 100019
+#define SBI_ERR_SM_ENCLAVE_TERMINATED                  100020
 #define SBI_ERR_SM_DEPRECATED                          100099
 #define SBI_ERR_SM_NOT_IMPLEMENTED                     100100
 

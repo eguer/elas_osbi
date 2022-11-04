@@ -1,9 +1,10 @@
 #ifndef H_REGION_PERMITS
 #define H_REGION_PERMITS
 
-#include "atomic.h"
 #include "cpu.h"
 #include "perm.h"
+#include <sbi/riscv_locks.h>
+#include <sbi/riscv_atomic.h>
 
 #define REGION_PERMITS_MAX 16
 
@@ -30,14 +31,14 @@ struct region* get_region_by_uid(
 	   	int count,
 	   	unsigned int uid);
 
-static void update_region_perm(struct region* reg){
-	static spinlock_t print_lock = SPINLOCK_INIT;
+static void __attribute__((unused)) update_region_perm(struct region* reg){
+	// static spinlock_t print_lock = SPIN_LOCK_INIT; TODO needed? unused
 	int eid = cpu_get_enclave_id();
 	int perm = (int)get_perm(&reg->perm_conf, eid);
-	pmp_set(reg->pmp_rid, perm);
+	pmp_set_keystone(reg->pmp_rid, perm);
 }
 
-static int get_region_index(struct region* region_list, enum region_type type){
+static int __attribute__((unused)) get_region_index(struct region* region_list, enum region_type type){
 	size_t i;
 	for(i = 0;i < REGIONS_MAX; i++){
 		if(region_list[i].type == type){
@@ -48,18 +49,21 @@ static int get_region_index(struct region* region_list, enum region_type type){
 	return -1;
 }
 
-static uintptr_t get_region_size(struct region* region_list, int memid){
-	if (0 <= memid && memid < REGIONS_MAX)
-		return pmp_region_get_size(region_list[memid].pmp_rid);
+// TODO needed? unused
+// static uintptr_t get_region_size(struct region* region_list, int memid){
+// 	if (0 <= memid && memid < REGIONS_MAX)
+// 		return pmp_region_get_size(region_list[memid].pmp_rid);
 
-	return 0;
-}
+// 	return 0;
+// }
 
-static uintptr_t get_region_base(struct region* region_list, int memid){
-	if (0 <= memid && memid < REGIONS_MAX)
-		return pmp_region_get_addr(region_list[memid].pmp_rid);
 
-	return 0;
-}
+// TODO needed? unused
+// static uintptr_t get_region_base(struct region* region_list, int memid){
+// 	if (0 <= memid && memid < REGIONS_MAX)
+// 		return pmp_region_get_addr(region_list[memid].pmp_rid);
+
+// 	return 0;
+// }
 
 #endif

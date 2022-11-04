@@ -9,6 +9,7 @@
 #include "sm-sbi-opensbi.h"
 #include "page.h"
 #include "ipi.h"
+#include "region.h"
 #include <sbi/sbi_hart.h>
 #include <sbi/riscv_asm.h>
 #include <sbi/riscv_locks.h>
@@ -213,6 +214,15 @@ int pmp_set_global(int region_idx, uint8_t perm)
 
   return SBI_ERR_SM_PMP_SUCCESS;
 }
+
+// int pmp_shmem_update_global(int region) {
+//   /* set PMP of itself */
+//   if(enclave_mask & ENCLAVE_MASK(cpu_get_enclave_id())){
+// 	  update_region_perm(shared_regions + region);
+//   }
+
+//   return PMP_SUCCESS;
+// }
 
 void pmp_init()
 {
