@@ -1,4 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/firmware/payloads/test_head.o: \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/firmware/payloads/test_head.S \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h

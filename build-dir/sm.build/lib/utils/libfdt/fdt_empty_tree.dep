@@ -1,9 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/libfdt/fdt_empty_tree.o: \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/fdt_empty_tree.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt_env.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_string.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/fdt.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt_env.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/libfdt/libfdt_internal.h

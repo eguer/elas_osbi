@@ -1,4 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/sbi/sbi_string.o: \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/sbi/sbi_string.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_string.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h

@@ -1,1 +1,0 @@
-/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-gcc   -nostdlib -static -T /home/elisa/Desktop/elas_osbi/sdk/examples/tests/app.lds CMakeFiles/loop.dir/loop/loop.s.o  -o loop  ../../../sdk/build64/lib/libkeystone-eapp.a 

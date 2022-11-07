@@ -11,7 +11,6 @@
 #include "ipi.h"
 #include "assert.h"
 #include <stdarg.h>
-#include <string.h>
 #include <sbi/sbi_string.h>
 #include <sbi/riscv_asm.h>
 #include <sbi/riscv_locks.h>
@@ -21,7 +20,7 @@ struct enclave enclaves[ENCLAVES_MAX];
 struct region shared_regions[REGIONS_MAX];
 #define ENCLAVE_EXISTS(eid) (eid >= 0 && eid < ENCLAVES_MAX && enclaves[eid].state >= 0)
 
-static spinlock_t encl_lock = SPIN_LOCK_INITIALIZER;
+spinlock_t encl_lock = SPIN_LOCK_INITIALIZER;
 
 extern void save_host_regs(void);
 extern void restore_host_regs(void);
@@ -359,7 +358,7 @@ unsigned long copy_buffer_to_host(uintptr_t* dest_ptr, uintptr_t* src_ptr, unsig
     int region_overlap = 0;
     region_overlap = pmp_detect_region_overlap_atomic((uintptr_t)dest_ptr, size);
     if (!region_overlap)
-        memcpy(dest_ptr, src_ptr, size);
+        sbi_memcpy(dest_ptr, src_ptr, size);
 
     if (region_overlap)
         return SBI_ERR_SM_ENCLAVE_REGION_OVERLAPS;
@@ -412,7 +411,7 @@ unsigned long copy_from_host(void* source, void* dest, size_t size) {
     region_overlap = pmp_detect_region_overlap_atomic((uintptr_t) source, size);
     // TODO: Validate that dest is inside the SM.
     if (!region_overlap)
-        memcpy(dest, source, size);
+        sbi_memcpy(dest, source, size);
 
     if (region_overlap)
         return SBI_ERR_SM_ENCLAVE_REGION_OVERLAPS;
@@ -425,7 +424,7 @@ unsigned long copy_to_host(void* dest, void* source, size_t size){
     int region_overlap = 0;
     region_overlap = pmp_detect_region_overlap_atomic((uintptr_t) dest, size);
     if (!region_overlap)
-        memcpy(dest, source, size);
+        sbi_memcpy(dest, source, size);
 
     if (region_overlap)
         return SBI_ERR_SM_ENCLAVE_REGION_OVERLAPS;
@@ -469,7 +468,7 @@ static unsigned long copy_from_enclave(struct enclave* enclave,
     int legal = buffer_in_encl_region(enclave, source, size, 1);
 
     if (legal)
-        memcpy(dest, source, size);
+        sbi_memcpy(dest, source, size);
 
     if (!legal)
         return SBI_ERR_SM_ENCLAVE_ILLEGAL_ARGUMENT;
@@ -527,7 +526,7 @@ unsigned long copy_to_enclave(struct enclave* enclave,
     int legal = buffer_in_encl_region(enclave, dest, size, 1);
 
     if (legal)
-        memcpy(dest, source, size);
+        sbi_memcpy(dest, source, size);
 
     if (!legal){
         return SBI_ERR_SM_ENCLAVE_ILLEGAL_ARGUMENT;
@@ -725,7 +724,7 @@ static uintptr_t remove_region(struct region* region, int dry) {
         rid = region->pmp_rid;
         base = (void*) pmp_region_get_addr(rid);
         size = (size_t) pmp_region_get_size(rid);
-        memset((void*) base, 0, size); // reset contents to 0 to prevent leaking secrets to OS
+        sbi_memset((void*) base, 0, size); // reset contents to 0 to prevent leaking secrets to OS
     }
 
     for (i = 0; i < ENCLAVES_MAX; i++) {
@@ -754,7 +753,7 @@ static uintptr_t remove_region(struct region* region, int dry) {
 unsigned long destroy_enclave(unsigned int eid, struct enclave_shm_list* shm_list) {
   int destroyable;
 
-  memset(shm_list, 0, sizeof(struct enclave_shm_list));
+  sbi_memset(shm_list, 0, sizeof(struct enclave_shm_list));
 
   spin_lock(&encl_lock);
 
@@ -996,30 +995,30 @@ elasticlave_create_clean:
     return ret;
 }
 
-// static unsigned long finish_request_response(uintptr_t *host_regs, struct enclave* encl, uintptr_t resp0, uintptr_t resp1, uintptr_t scratch) {
-//     unsigned long ret = SBI_ERR_SM_ENCLAVE_SUCCESS;
-//     switch(encl->request.type) {
-//       case REQUEST_ELASTICLAVE_CREATE:
-//         // resp0: paddr
-//         // host_regs[10]: size
-//         // host_regs[11]: uid_ret
-//         ret = _elasticlave_create(encl, resp0, (void*)host_regs[11], host_regs[10]);
-//         break;
-//       case REQUEST_ELASTICLAVE_DESTROY:
-//         break; // no need to do anything
-//       default:;
-//     }
+static unsigned long finish_request_response(struct sbi_trap_regs *host_regs, struct enclave* encl, uintptr_t resp0, uintptr_t resp1, uintptr_t scratch) {
+    unsigned long ret = SBI_ERR_SM_ENCLAVE_SUCCESS;
+    switch(encl->request.type) {
+      case REQUEST_ELASTICLAVE_CREATE:
+        // resp0: paddr
+        // host_regs[10]: size
+        // host_regs[11]: uid_ret
+        ret = _elasticlave_create(encl, resp0, (void*)host_regs->a1, host_regs->a0);
+        break;
+      case REQUEST_ELASTICLAVE_DESTROY:
+        break; // no need to do anything
+      default:;
+    }
 
-//     if (ret == SBI_ERR_SM_ENCLAVE_SUCCESS) {
-//         encl->request.type = REQUEST_NO_REQUEST;
-//     } 
+    if (ret == SBI_ERR_SM_ENCLAVE_SUCCESS) {
+        encl->request.type = REQUEST_NO_REQUEST;
+    } 
 
-//     return ret;
-// }
+    return ret;
+}
 
 unsigned long resume_enclave(struct sbi_trap_regs *regs, unsigned int eid, uintptr_t arg1, uintptr_t arg2) {
   int resumable;
-  // uintptr_t request_response_scratch = 0;
+  uintptr_t request_response_scratch = 0;
 
   spin_lock(&encl_lock);
 
@@ -1040,7 +1039,7 @@ unsigned long resume_enclave(struct sbi_trap_regs *regs, unsigned int eid, uintp
 
   // Enclave is OK to resume, context switch to it
   context_switch_to_enclave(regs, encl, 0);
-  // finish_request_response((uintptr_t *)regs, encl, arg1, arg2, request_response_scratch);
+  finish_request_response(regs, encl, arg1, arg2, request_response_scratch);
 
   return SBI_ERR_SM_ENCLAVE_SUCCESS;
 }

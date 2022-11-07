@@ -1,3 +1,0 @@
-repository='https://github.com/keystone-enclave/keystone-runtime'
-module=''
-tag='origin'

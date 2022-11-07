@@ -104,13 +104,11 @@ unsigned long sbi_sm_attest_enclave(uintptr_t report, uintptr_t data, uintptr_t 
 //   return ret;
 // }
 
-unsigned long sbi_sm_random()
-{
+unsigned long sbi_sm_random() {
   return (unsigned long) platform_random();
 }
 
-unsigned long sbi_sm_call_plugin(uintptr_t plugin_id, uintptr_t call_id, uintptr_t arg0, uintptr_t arg1)
-{
+unsigned long sbi_sm_call_plugin(uintptr_t plugin_id, uintptr_t call_id, uintptr_t arg0, uintptr_t arg1) {
   unsigned long ret;
   ret = call_plugin(cpu_get_enclave_id(), plugin_id, call_id, arg0, arg1);
   return ret;
@@ -203,7 +201,6 @@ unsigned long sbi_sm_elasticlave_destroy(struct sbi_trap_regs *regs, unsigned in
     if (ret == SBI_ERR_SM_ENCLAVE_NOT_RUNNING) // did not successfully switch the context
       return ret;
 
-    // TODO using the right arg??
     uintptr_t* request_args = (uintptr_t *)regs->a1; // arg1 would be pointer to the arg array
     setup_enclave_request(eid, REQUEST_ELASTICLAVE_DESTROY, request_args, 1, paddr);
   }

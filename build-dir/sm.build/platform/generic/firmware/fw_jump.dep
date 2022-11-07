@@ -1,8 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/firmware/fw_jump.o: /home/elisa/Desktop/elas_osbi/sm/opensbi/firmware/fw_jump.S \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/firmware/fw_base.S \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_platform.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_scratch.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_trap.h

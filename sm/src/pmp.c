@@ -221,7 +221,7 @@ int pmp_set_global(int region_idx, uint8_t perm)
 // 	  update_region_perm(shared_regions + region);
 //   }
 
-//   return PMP_SUCCESS;
+//   return SBI_ERR_SM_PMP_SUCCESS;
 // }
 
 void pmp_init()

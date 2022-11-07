@@ -43,7 +43,6 @@ int share_allowed(
 		struct region_perm_config* r_config,
 		int eid);
 
-
 struct perm_config* get_new_perm_config(
 		struct region_perm_config* r_config);
 

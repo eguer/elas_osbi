@@ -1,5 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/../../src/ed25519/fe.o: \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/ed25519/fe.c \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/ed25519/fixedint.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/ed25519/fe.h

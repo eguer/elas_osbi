@@ -1,6 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/serial/fdt_serial_sifive.o: \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/serial/fdt_serial_sifive.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/fdt/fdt_helper.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/serial/fdt_serial.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/serial/sifive-uart.h

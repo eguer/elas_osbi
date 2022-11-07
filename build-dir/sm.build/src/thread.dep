@@ -1,9 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/../../src/thread.o: \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/thread.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_asm.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_encoding.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_const.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_console.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h \
- /home/elisa/Desktop/elas_osbi/sm/plat//generic/../../src/thread.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_trap.h

@@ -1,1 +1,0 @@
-/home/elisa/Desktop/elas_osbi/riscv64/bin/riscv64-unknown-linux-gnu-g++     CMakeFiles/hello-runner.dir/host/host.cpp.o  -o hello-runner  ../../../sdk/build64/lib/libkeystone-host.a ../../../sdk/build64/lib/libkeystone-edge.a 

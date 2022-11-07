@@ -1,4 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/lib/utils/sys/htif.o: /home/elisa/Desktop/elas_osbi/sm/opensbi/lib/utils/sys/htif.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/riscv_locks.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi_utils/sys/htif.h \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_types.h

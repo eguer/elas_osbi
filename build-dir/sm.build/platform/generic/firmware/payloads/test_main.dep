@@ -1,3 +1,0 @@
-/home/elisa/Desktop/elas_osbi/build-dir/sm.build/platform/generic/firmware/payloads/test_main.o: \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/firmware/payloads/test_main.c \
- /home/elisa/Desktop/elas_osbi/sm/opensbi/include/sbi/sbi_ecall_interface.h

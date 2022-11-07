@@ -23,6 +23,8 @@ platform-objs-y += $(KEYSTONE_SM_REL)src/mprv.o
 platform-objs-y += $(KEYSTONE_SM_REL)src/sbi_trap_hack.o
 platform-objs-y += $(KEYSTONE_SM_REL)src/trap.o
 platform-objs-y += $(KEYSTONE_SM_REL)src/ipi.o
+platform-objs-y += $(KEYSTONE_SM_REL)src/region.o
+platform-objs-y += $(KEYSTONE_SM_REL)src/perm.o
 
 platform-objs-y += $(KEYSTONE_SM_REL)src/sha3/sha3.o
 platform-objs-y += $(KEYSTONE_SM_REL)src/ed25519/fe.o
