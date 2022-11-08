@@ -78,20 +78,20 @@ export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
 #./make-sodium.sh
 
 # build SDK if not present
-if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
-then
-  echo "KEYSTONE_SDK_DIR is set to $KEYSTONE_SDK_DIR and present. Skipping SDK installation."
-else
-  echo "KEYSTONE_SDK_DIR is not set or present. Installing from $(pwd)/sdk"
-  export KEYSTONE_SDK_DIR=$(pwd)/sdk/build$BITS
-  cd sdk
-  mkdir -p build
-  cd build
-  cmake .. $SDK_FLAGS
-  make
-  make install
-  cd ../..
-fi
+#if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
+#then
+#  echo "KEYSTONE_SDK_DIR is set to $KEYSTONE_SDK_DIR and present. Skipping SDK installation."
+#else
+#  echo "KEYSTONE_SDK_DIR is not set or present. Installing from $#(pwd)/sdk"
+#  export KEYSTONE_SDK_DIR=$(pwd)/sdk/build$BITS
+#  cd sdk
+#  mkdir -p build
+#  cd build
+#  cmake .. $SDK_FLAGS
+#  make
+#  make install
+#  cd ../..
+#fi
 
 # update source.sh
 GCC_PATH=$(which riscv$BITS-unknown-linux-gnu-gcc)
@@ -101,9 +101,13 @@ echo "export PATH=$RISCV/bin:\$PATH" >> ./source.sh
 echo "export KEYSTONE_SDK_DIR=$KEYSTONE_SDK_DIR" >> ./source.sh
 echo "export LIBSODIUM_DIR=$LIBSODIUM_DIR" >> ./source.sh
 
+./make-sdk.sh
+
 echo "RISC-V toolchain and Keystone SDK have been fully setup"
 echo ""
 echo " * Notice: run the following command to update enviroment variables *"
 echo ""
 echo "           source ./source.sh"
 echo ""
+
+
