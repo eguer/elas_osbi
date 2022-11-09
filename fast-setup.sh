@@ -74,24 +74,46 @@ fi
 git submodule sync --recursive
 git submodule update --init --recursive
 
-export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
-#./make-sodium.sh
+if [ ! -z $LIBSODIUM_DIR ] && [ -e $LIBSODIUM_DIR ]
+then
+  echo "LIBSODIUM_DIR is set to $LIBSODIUM_DIR and present. Skipping libsodium installation."
+else
+  echo "LIBSODIUM_DIR is not set or present. Installing from $#(pwd)/libsodium"
+  export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
+  cd libsodium
+  ./autogen.sh
+  ./configure --host=riscv64-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
+  make
+  cd ../..
+fi
 
 # build SDK if not present
-#if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
-#then
-#  echo "KEYSTONE_SDK_DIR is set to $KEYSTONE_SDK_DIR and present. Skipping SDK installation."
-#else
-#  echo "KEYSTONE_SDK_DIR is not set or present. Installing from $#(pwd)/sdk"
-#  export KEYSTONE_SDK_DIR=$(pwd)/sdk/build$BITS
-#  cd sdk
-#  mkdir -p build
-#  cd build
-#  cmake .. $SDK_FLAGS
-#  make
-#  make install
-#  cd ../..
-#fi
+if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
+then
+  echo "KEYSTONE_SDK_DIR is set to $KEYSTONE_SDK_DIR and present. Skipping SDK installation."
+else
+  echo "KEYSTONE_SDK_DIR is not set or present. Installing from $(pwd)/sdk"
+  export KEYSTONE_SDK_DIR=$(pwd)/sdk/build$BITS
+  cd sdk
+  mkdir -p {build$BITS/lib,build$BITS/include}
+  cd ./build$BITS/include
+  mkdir {app,edge,host,verifier}
+  cd verifier
+  mkdir {ed25519,sha3}
+  cd ../../..
+  cp ./lib/app/include/* ./build$BITS/include/app
+  cp ./lib/edge/include/* ./build$BITS/include/edge
+  cp ./lib/host/include/* ./build$BITS/include/host
+  cp ./lib/verifier/*.h ./build$BITS/include/verifier
+  cp ./lib/verifier/ed25519/*.h ./build$BITS/include/verifier/ed25519
+  cp ./lib/verifier/sha3/*.h ./build$BITS/include/verifier/sha3
+  make -C lib $*
+  if [ $? -ne 0 ]
+  then
+    rm -rf build$BITS
+  fi
+  cd ..
+fi
 
 # update source.sh
 GCC_PATH=$(which riscv$BITS-unknown-linux-gnu-gcc)
@@ -100,8 +122,6 @@ echo "export RISCV=$RISCV_DIR" > ./source.sh
 echo "export PATH=$RISCV/bin:\$PATH" >> ./source.sh
 echo "export KEYSTONE_SDK_DIR=$KEYSTONE_SDK_DIR" >> ./source.sh
 echo "export LIBSODIUM_DIR=$LIBSODIUM_DIR" >> ./source.sh
-
-./make-sdk.sh
 
 echo "RISC-V toolchain and Keystone SDK have been fully setup"
 echo ""

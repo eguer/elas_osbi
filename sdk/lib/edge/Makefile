@@ -16,7 +16,7 @@ CXX_OBJS = $(patsubst %.cpp,%.o,$(CXX_SRCS))
 AR = riscv64-unknown-elf-ar
 ARFLAGS = rcs
 
-TARGET=../libkeystone-edge.a
+TARGET=$(KEYSTONE_SDK_DIR)/lib/libkeystone-edge.a
 
 all: $(TARGET)
 

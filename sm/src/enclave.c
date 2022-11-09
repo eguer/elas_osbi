@@ -800,7 +800,7 @@ unsigned long destroy_enclave(unsigned int eid, struct enclave_shm_list* shm_lis
       remove_region(shared_regions + i, 0);
     }
   }
-  // send_encl_ipis(affected_mask & ~ENCLAVE_MASK(encl_idx), IPI_TYPE_REGION,
+  /// send_encl_ipis(affected_mask & ~ENCLAVE_MASK(encl_idx), IPI_TYPE_REGION,
           // NULL, 1);
 
   // 2. free pmp region for UTM

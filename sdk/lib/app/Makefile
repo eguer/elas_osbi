@@ -16,7 +16,7 @@ C_OBJS = $(patsubst %.c,%.o,$(C_SRCS))
 ARCHIVE_C_OBJS=$(C_OBJS)
 #ARCHIVE_C_OBJS = $(filter-out src/string.o,$(C_OBJS))
 
-TARGET = ../libkeystone-eapp.a
+TARGET = $(KEYSTONE_SDK_DIR)/lib/libkeystone-eapp.a
 
 all: $(TARGET)
 

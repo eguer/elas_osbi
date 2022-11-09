@@ -99,6 +99,7 @@ int pmp_unset(region_id n);
 int pmp_unset_global(region_id n);
 int pmp_detect_region_overlap_atomic(uintptr_t base, uintptr_t size);
 void handle_pmp_ipi();
+// void pmp_ipi_update(int* args);
 
 uintptr_t pmp_region_get_addr(region_id i);
 uint64_t pmp_region_get_size(region_id i);

@@ -17,8 +17,7 @@
 extern struct enclave enclaves[];
 extern spinlock_t encl_lock;
 
-unsigned long sbi_sm_create_enclave(unsigned long* eid, uintptr_t create_args)
-{
+unsigned long sbi_sm_create_enclave(unsigned long* eid, uintptr_t create_args) {
   struct keystone_sbi_create create_args_local;
   unsigned long ret;
 
@@ -33,8 +32,7 @@ unsigned long sbi_sm_create_enclave(unsigned long* eid, uintptr_t create_args)
   return ret;
 }
 
-unsigned long sbi_sm_destroy_enclave(unsigned long eid, uintptr_t shm_list)
-{
+unsigned long sbi_sm_destroy_enclave(unsigned long eid, uintptr_t shm_list) {
   unsigned long ret;
   struct enclave_shm_list list;
 
@@ -50,16 +48,14 @@ unsigned long sbi_sm_destroy_enclave(unsigned long eid, uintptr_t shm_list)
   return ret;
 }
 
-unsigned long sbi_sm_run_enclave(struct sbi_trap_regs *regs, unsigned long eid)
-{
+unsigned long sbi_sm_run_enclave(struct sbi_trap_regs *regs, unsigned long eid) {
   regs->a0 = run_enclave(regs, (unsigned int) eid);
   regs->mepc += 4;
   sbi_trap_exit(regs);
   return 0;
 }
 
-unsigned long sbi_sm_resume_enclave(struct sbi_trap_regs *regs, unsigned long eid, uintptr_t resp0, uintptr_t resp1)
-{
+unsigned long sbi_sm_resume_enclave(struct sbi_trap_regs *regs, unsigned long eid, uintptr_t resp0, uintptr_t resp1) {
   unsigned long ret;
   ret = resume_enclave(regs, (unsigned int) eid, resp0, resp1);
   if (!regs->zero)
@@ -70,8 +66,7 @@ unsigned long sbi_sm_resume_enclave(struct sbi_trap_regs *regs, unsigned long ei
   return 0;
 }
 
-unsigned long sbi_sm_exit_enclave(struct sbi_trap_regs *regs, unsigned long retval, uintptr_t rt_stats_ptr)
-{
+unsigned long sbi_sm_exit_enclave(struct sbi_trap_regs *regs, unsigned long retval, uintptr_t rt_stats_ptr) {
   regs->a0 = exit_enclave(regs, cpu_get_enclave_id(), rt_stats_ptr);
   regs->a1 = retval;
   regs->mepc += 4;
@@ -79,30 +74,18 @@ unsigned long sbi_sm_exit_enclave(struct sbi_trap_regs *regs, unsigned long retv
   return 0;
 }
 
-unsigned long sbi_sm_stop_enclave(struct sbi_trap_regs *regs, unsigned long request)
-{
+unsigned long sbi_sm_stop_enclave(struct sbi_trap_regs *regs, unsigned long request) {
   regs->a0 = stop_enclave(regs, request, cpu_get_enclave_id());
   regs->mepc += 4;
   sbi_trap_exit(regs);
   return 0;
 }
 
-unsigned long sbi_sm_attest_enclave(uintptr_t report, uintptr_t data, uintptr_t size)
-{
+unsigned long sbi_sm_attest_enclave(uintptr_t report, uintptr_t data, uintptr_t size) {
   unsigned long ret;
   ret = attest_enclave(report, data, size, cpu_get_enclave_id());
   return ret;
 }
-
-// TODO clean up?
-// unsigned long sbi_sm_get_sealing_key(uintptr_t sealing_key, uintptr_t key_ident,
-//                        size_t key_ident_size)
-// {
-//   unsigned long ret;
-//   ret = get_sealing_key(sealing_key, key_ident, key_ident_size,
-//                          cpu_get_enclave_id());
-//   return ret;
-// }
 
 unsigned long sbi_sm_random() {
   return (unsigned long) platform_random();

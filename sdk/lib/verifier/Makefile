@@ -20,7 +20,7 @@ COBJS = $(patsubst %.c,%.o,$(CSRCS))
 
 ARFLAGS = rcs
 
-TARGET=../libkeystone-verifier.a
+TARGET=$(KEYSTONE_SDK_DIR)/lib/libkeystone-verifier.a
 
 all: $(TARGET)
 	#$(CXX) -std=gnu++11 test.cpp ../libkeystone-verifier.a -o test

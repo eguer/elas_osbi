@@ -11,7 +11,7 @@ OBJS = $(patsubst %.cpp,%.o,$(SRCS))
 AR = riscv64-unknown-linux-gnu-ar
 ARFLAGS = rcs
 
-TARGET=../libkeystone-host.a
+TARGET=$(KEYSTONE_SDK_DIR)/lib/libkeystone-host.a
 
 all: $(TARGET)
 
