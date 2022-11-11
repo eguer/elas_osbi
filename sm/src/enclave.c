@@ -33,16 +33,15 @@ void try_terminate_enclave(uintptr_t* regs) {
     }
 }
 
-
-// TODO unused?
-// static void terminate_enclaves(uintptr_t enclave_mask){
+//TODO needed? unused
+// static void terminate_enclaves(uintptr_t enclave_mask, uintptr_t *regs){
 //     int i, mask;
 //     for(i = 0, mask = enclave_mask >> 1; mask; ++i, mask >>= 1){
 //         if(mask & 1){
 //             enclaves[i].terminated = 1;
 //         }
 //     }
-//     pmp_terminate_global(enclave_mask);
+//     pmp_terminate_global(enclave_mask, regs);
 // }
 
 /****************************
@@ -800,8 +799,7 @@ unsigned long destroy_enclave(unsigned int eid, struct enclave_shm_list* shm_lis
       remove_region(shared_regions + i, 0);
     }
   }
-  /// send_encl_ipis(affected_mask & ~ENCLAVE_MASK(encl_idx), IPI_TYPE_REGION,
-          // NULL, 1);
+  send_and_sync_region_ipi(affected_mask & ~ENCLAVE_MASK(encl_idx));
 
   // 2. free pmp region for UTM
   pmp_unset_global(encl->epm.pmp_rid);
@@ -1368,8 +1366,8 @@ void region_events_add(uintptr_t enclave_mask, unsigned int uid,
       }
     }
 
-    // if (send_ipi)
-        // send_encl_ipis(enclave_mask, IPI_TYPE_REGION, NULL, 1);
+    if (send_ipi)
+      send_and_sync_region_ipi(enclave_mask);
 }
 
 void region_events_pop(struct enclave* enclave, int count) {
@@ -1394,7 +1392,7 @@ void dispatch_events_unlocked(){
   }
 }
 
-void region_ipi_update(int* args) {
+void region_ipi_update() { //TODO add back in params? unused
   dispatch_events_unlocked();
 }
 
