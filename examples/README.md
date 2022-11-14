@@ -2,12 +2,9 @@
 
 ## Set it up
 
-**Prerequisite: Docker**
+**Prerequisite: Docker** (TODO FIX!)
 
-
-```
-git clone --recursive https://github.com/jasonyu1996/elasticlave-dac-tutorial.git
-cd elasticlave-dac-tutorial
+cd examples
 ./make
 ```
 
