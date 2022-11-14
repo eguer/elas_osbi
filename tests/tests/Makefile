@@ -25,10 +25,10 @@ SDK_APP_LIB = $(SDK_LIB_DIR)/libkeystone-eapp.a
 SDK_EDGE_LIB = $(SDK_LIB_DIR)/libkeystone-edge.a
 SDK_HOST_LIB = $(SDK_LIB_DIR)/libkeystone-host.a
 SDK_VERIFIER_LIB = $(SDK_LIB_DIR)/libkeystone-verifier.a
-SDK_INCLUDE_APP_DIR = $(KEYSTONE_SDK_DIR)/include/app
-SDK_INCLUDE_EDGE_DIR = $(KEYSTONE_SDK_DIR)/include/edge
-SDK_INCLUDE_HOST_DIR = $(KEYSTONE_SDK_DIR)/include/host
-SDK_INCLUDE_VERIFIER_DIR = $(KEYSTONE_SDK_DIR)/include/verifier
+SDK_INCLUDE_APP_DIR = $(SDK_LIB_DIR)/app/include
+SDK_INCLUDE_EDGE_DIR = $(SDK_LIB_DIR)/edge/include
+SDK_INCLUDE_HOST_DIR = $(SDK_LIB_DIR)/host/include
+SDK_INCLUDE_VERIFIER_DIR = $(SDK_LIB_DIR)/verifier
 
 export CFLAGS_EAPP:=-Wall -I. \
 	-I$(SDK_INCLUDE_APP_DIR) -I$(SDK_INCLUDE_EDGE_DIR) -I$(MUSL_DIR)/include/
@@ -53,8 +53,8 @@ SDK_LIB_DIR =$(KEYSTONE_SDK_DIR)/lib
 SDK_HOST_LIB = $(SDK_LIB_DIR)/libkeystone-host.a
 SDK_EDGE_LIB = $(SDK_LIB_DIR)/libkeystone-edge.a
 
-SDK_INCLUDE_HOST_DIR = $(KEYSTONE_SDK_DIR)/include/host
-SDK_INCLUDE_EDGE_DIR = $(KEYSTONE_SDK_DIR)/include/edge
+SDK_INCLUDE_HOST_DIR = $(SDK_LIB_DIR)/host/include
+SDK_INCLUDE_EDGE_DIR = $(SDK_LIB_DIR)/edge/include
 
 RUNTIME=eyrie-rt
 RUNNER=test-runner.riscv

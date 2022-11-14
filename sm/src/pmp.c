@@ -217,7 +217,7 @@ int pmp_unset_global(int region_idx)
   if(!is_pmp_region_valid(region_idx))
     PMP_ERROR(SBI_ERR_SM_PMP_REGION_INVALID, "Invalid PMP region index");
 
-  send_and_sync_pmp_ipi(region_idx, SBI_PMP_IPI_TYPE_UNSET, PMP_NO_PERM);
+  send_and_sync_pmp_ipi((uintptr_t)-1, region_idx, SBI_PMP_IPI_TYPE_UNSET, PMP_NO_PERM);
 
   return SBI_ERR_SM_PMP_SUCCESS;
 }
@@ -229,21 +229,21 @@ int pmp_set_global(int region_idx, uint8_t perm, uintptr_t enclave_mask)
   if(!is_pmp_region_valid(region_idx))
     PMP_ERROR(SBI_ERR_SM_PMP_REGION_INVALID, "Invalid PMP region index");
 
-  send_and_sync_pmp_ipi(region_idx, SBI_PMP_IPI_TYPE_SET, perm);
+  send_and_sync_pmp_ipi(enclave_mask, region_idx, SBI_PMP_IPI_TYPE_SET, perm);
 
   return SBI_ERR_SM_PMP_SUCCESS;
 }
 
 // TODO enclave_mask missing?
 int pmp_shmem_update_global(int region_idx, uintptr_t enclave_mask) {
-  send_and_sync_pmp_ipi(region_idx, SBI_PMP_IPI_TYPE_SHMEM, PMP_NO_PERM);
+  send_and_sync_pmp_ipi(enclave_mask, region_idx, SBI_PMP_IPI_TYPE_SHMEM, PMP_NO_PERM);
 
-  return PMP_SUCCESS;
+  return SBI_ERR_SM_PMP_SUCCESS;
 }
 
 int pmp_terminate_global(uintptr_t enclave_mask, uintptr_t *regs) {
   send_and_sync_terminate_ipi(enclave_mask, regs);
-  return PMP_SUCCESS;
+  return SBI_ERR_SM_PMP_SUCCESS;
 }
 
 void pmp_init()

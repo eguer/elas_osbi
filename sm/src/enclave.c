@@ -641,8 +641,8 @@ unsigned long create_enclave(unsigned long *eidptr, struct keystone_sbi_create c
     goto free_region;
 
   // set pmp registers for private region (not shared)
-  if(pmp_set_global(region, PMP_NO_PERM) ||
-            pmp_set_global(shared_region, PMP_ALL_PERM))
+  if(pmp_set_global(region, PMP_NO_PERM, (uintptr_t)-1) ||
+            pmp_set_global(shared_region, PMP_ALL_PERM, ENCLAVE_MASK(EID_UNTRUSTED)))
     goto free_shared_region;
 
   // cleanup some memory regions for sanity See issue #38

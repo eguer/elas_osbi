@@ -33,7 +33,7 @@ void sbi_pmp_ipi_local_update(struct sbi_tlb_info *info);
 
 void sbi_terminate_ipi_local(struct sbi_tlb_info *__info);
 
-void sbi_region_ipi_local(struct sbi_tlb_info *__info)
+void sbi_region_ipi_local(struct sbi_tlb_info *__info);
 
 #define SBI_PMP_IPI_INFO_SIZE sizeof(struct sbi_pmp_ipi_info)
 
@@ -43,7 +43,7 @@ int sbi_pmp_ipi_request(ulong hmask, ulong hbase, struct sbi_pmp_ipi_info* info)
 
 void send_and_sync_pmp_ipi(uintptr_t encl_mask, int region_idx, int type, uint8_t perm);
 
-void send_and_sync_terminate_ipi(uintptr_t encl_mask, int region_idx, int type, uint8_t perm);
+void send_and_sync_terminate_ipi(uintptr_t encl_mask, uintptr_t *regs);
 
 void send_and_sync_region_ipi(uintptr_t encl_mask);
 
