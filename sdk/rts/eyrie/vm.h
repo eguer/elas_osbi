@@ -1,3 +1,5 @@
+#pragma once 
+
 #ifndef __VM_H__
 #define __VM_H__
 
@@ -65,14 +67,14 @@
 
 extern void* rt_base;
 
-uintptr_t runtime_va_start;
+extern uintptr_t runtime_va_start;
 /* Eyrie is for Sv39 */
 static inline uintptr_t satp_new(uintptr_t pa)
 {
   return (SATP_MODE | (pa >> RISCV_PAGE_BITS));
 }
 
-uintptr_t kernel_offset;
+extern uintptr_t kernel_offset;
 static inline uintptr_t kernel_va_to_pa(void* ptr)
 {
   return (uintptr_t) ptr - kernel_offset;
@@ -82,7 +84,7 @@ static inline void* kernel_pa_to_va(uintptr_t pa){
 	return (void*) (pa + kernel_offset);
 }
 
-uintptr_t load_pa_start;
+extern uintptr_t load_pa_start;
 static inline uintptr_t __va(uintptr_t pa)
 {
   return (pa - load_pa_start) + EYRIE_LOAD_START;
@@ -127,21 +129,21 @@ static inline uintptr_t pte_ppn(pte pte)
 
 #ifdef USE_FREEMEM
 
-pte root_page_table[BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
-pte secondary_page_tables[MAX_PT_COUNT][BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
-size_t page_tables_count;
+extern pte root_page_table[BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
+extern pte secondary_page_tables[MAX_PT_COUNT][BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
+extern size_t page_tables_count;
 
 /* Program break */
-uintptr_t program_break;
+extern uintptr_t program_break;
 
 /* freemem */
-uintptr_t freemem_va_start;
-size_t freemem_size;
+extern uintptr_t freemem_va_start;
+extern size_t freemem_size;
 #endif // USE_FREEMEM
 
 /* shared buffer */
-uintptr_t shared_buffer;
-uintptr_t shared_buffer_size;
+extern uintptr_t shared_buffer;
+extern uintptr_t shared_buffer_size;
 
 
 

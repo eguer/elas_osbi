@@ -123,6 +123,7 @@ add_custom_command(OUTPUT ${qemu_wrkdir}/config-host.mak
   COMMENT "Configuring QEMU"
 )
 
+set(qemu_system ${qemu_wrkdir}/build/riscv${BITS}-softmmu/qemu-system-riscv${BITS})
 
 ###############################################################################
 ## COMPONENT: buildroot
@@ -241,14 +242,14 @@ add_custom_target("sm" ALL DEPENDS "linux" ${sm_wrkdir_exists} ${sm_patches} WOR
 ###############################################################################
 ## COMPONENT: tests
 ###############################################################################
-#set(example_wrkdir examples)
-#add_subdirectory(sdk/examples ${example_wrkdir})
-#set_target_properties(examples PROPERTIES EXCLUDE_FROM_ALL YES)
+set(example_wrkdir examples)
+add_subdirectory(sdk/examples ${example_wrkdir})
+set_target_properties(examples PROPERTIES EXCLUDE_FROM_ALL YES)
 
-#add_custom_target("tests" DEPENDS examples ${overlay_root}
-#  COMMAND find ${example_wrkdir} -name "tests.ke" | xargs -I{} rsync #{} ${overlay_root}
-#  COMMENT "Copying example enclave packages"
-#  )
+add_custom_target("tests" DEPENDS examples ${overlay_root}
+  COMMAND find ${example_wrkdir} -name "tests.ke" | xargs -I{} rsync {} ${overlay_root}
+  COMMENT "Copying example enclave packages"
+  )
 
 ###############################################################################
 ## COMPONENT: image

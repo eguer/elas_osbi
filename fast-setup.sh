@@ -96,6 +96,7 @@ else
   export KEYSTONE_SDK_DIR=$(pwd)/sdk/
   cd sdk
   make -C lib $*
+  make -C rts/eyrie $*
   cd ..
 fi
 

@@ -16,9 +16,18 @@
 
 rt_performance_stats_t stats;
 
-/* defined in vm.h */
-extern uintptr_t shared_buffer;
-extern uintptr_t shared_buffer_size;
+/* declared in vm.h */
+uintptr_t runtime_va_start;
+uintptr_t kernel_offset;
+uintptr_t load_pa_start;
+pte root_page_table[BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
+pte secondary_page_tables[MAX_PT_COUNT][BIT(RISCV_PT_INDEX_BITS)] __attribute__((aligned(RISCV_PAGE_SIZE)));
+size_t page_tables_count;
+uintptr_t program_break;
+uintptr_t freemem_va_start;
+size_t freemem_size;
+uintptr_t shared_buffer;
+uintptr_t shared_buffer_size;
 
 /* initial memory layout */
 uintptr_t utm_base;

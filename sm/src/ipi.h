@@ -11,14 +11,21 @@
 
 struct sbi_pmp_ipi_info {
   unsigned long type;
-  unsigned long __dummy;
+  unsigned long encl_mask;
   unsigned long rid;
   unsigned long perm;
 };
 
 struct sbi_terminate_ipi_info {
   unsigned long regs;
-  unsigned long __dummy;
+  unsigned long encl_mask;
+  unsigned long __dummy1;
+  unsigned long __dummy2;
+};
+
+struct sbi_region_ipi_info {
+  unsigned long encl_mask;
+  unsigned long __dummy0;
   unsigned long __dummy1;
   unsigned long __dummy2;
 };

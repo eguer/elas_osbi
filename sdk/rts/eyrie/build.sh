@@ -2,6 +2,7 @@
 
 EYRIE_SOURCE_DIR=`dirname $0`
 REQ_PLUGINS=${@:1}
+OPTIONS_LOG=${EYRIE_SOURCE_DIR}/.options_log
 
 # Build known plugins
 declare -A PLUGINS
@@ -16,14 +17,20 @@ PLUGINS[debug]="-DDEBUG "
 
 OPTIONS_FLAGS=
 
+echo > $OPTIONS_LOG
+
 for plugin in $REQ_PLUGINS; do
     if [[ ! ${PLUGINS[$plugin]+_} ]]; then
         echo "Unknown Eyrie plugin '$plugin'. Skipping"
     else
         OPTIONS_FLAGS+=${PLUGINS[$plugin]}
+        echo -n "$plugin " >> $OPTIONS_LOG
     fi
 done
 
+echo "first build"
+
 export OPTIONS_FLAGS
 make -C $EYRIE_SOURCE_DIR clean
+echo "second build"
 make -C $EYRIE_SOURCE_DIR
