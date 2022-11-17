@@ -38,6 +38,6 @@ add_custom_target("examples")
 
 # add all examples below
 add_subdirectory(hello)
-add_subdirectory(client-server)
+#add_subdirectory(client-server)
 #add_subdirectory(hello-native2)
 #add_subdirectory(tests)
