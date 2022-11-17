@@ -123,8 +123,6 @@ add_custom_command(OUTPUT ${qemu_wrkdir}/config-host.mak
   COMMENT "Configuring QEMU"
 )
 
-set(qemu_system ${qemu_wrkdir}/build/riscv${BITS}-softmmu/qemu-system-riscv${BITS})
-
 ###############################################################################
 ## COMPONENT: buildroot
 ###############################################################################

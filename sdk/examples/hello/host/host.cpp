@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     params.setFreeMemSize(freemem_size);
     params.setUntrustedMem(utm_ptr, untrusted_size);
 
-    enclave.init("./tut1-enclave", "../eyrie-rt", params);
+    enclave.init("./hello", "./eyrie-rt", params);
 
     DefaultEdgeCallDispatcher dispatcher;
     enclave.registerOcallDispatch(&dispatcher);
