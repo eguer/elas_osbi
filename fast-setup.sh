@@ -87,8 +87,6 @@ else
   cd ../..
 fi
 
-source source.sh
-
 # build SDK if not present
 if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
 then
