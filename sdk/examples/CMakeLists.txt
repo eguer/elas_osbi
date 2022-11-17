@@ -12,7 +12,7 @@ else()
   set(BITS 64)
 endif()
 
-use_riscv_toolchain(${BITS})
+use_riscv_toolchain_no_werror(${BITS})
 
 # check if SDK has been built and KEYSTONE_SDK_DIR environment variable exists
 if (NOT DEFINED ENV{KEYSTONE_SDK_DIR})
@@ -22,7 +22,7 @@ endif()
 set(KEYSTONE_SDK_DIR $ENV{KEYSTONE_SDK_DIR})
 
 # export include directory
-include_directories(AFTER ${KEYSTONE_SDK_DIR}/lib/app/include ${KEYSTONE_SDK_DIR}/lib/edge/include ${KEYSTONE_SDK_DIR}/lib/host/include ${KEYSTONE_SDK_DIR}/lib/verifier/include ${KEYSTONE_SDK_DIR}/lib/app/include)
+#include_directories(AFTER ${KEYSTONE_SDK_DIR}/lib/app/include ${KEYSTONE_SDK_DIR}/lib/edge/include ${KEYSTONE_SDK_DIR}/lib/host/include ${KEYSTONE_SDK_DIR}/lib/verifier/include ${KEYSTONE_SDK_DIR}/lib/app/include ${KEYSTONE_SDK_DIR}/../libsodium/src/libsodium/include)
 
 # set paths to the libraries
 set(KEYSTONE_LIB_HOST ${KEYSTONE_SDK_DIR}/lib/libkeystone-host.a)
@@ -38,6 +38,6 @@ add_custom_target("examples")
 
 # add all examples below
 add_subdirectory(hello)
-#add_subdirectory(hello-native)
+add_subdirectory(client-server)
 #add_subdirectory(hello-native2)
 #add_subdirectory(tests)

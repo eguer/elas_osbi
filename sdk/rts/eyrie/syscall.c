@@ -52,7 +52,7 @@ uintptr_t dispatch_edgecall_syscall(struct edge_syscall* syscall_data_ptr, size_
     return -1;
   }
 
-  ret = SBI_CALL_1(SBI_SM_STOP_ENCLAVE, 1);
+  ret = sbi_stop_enclave(1);
 
   if (ret != 0) {
     return -1;
@@ -133,7 +133,7 @@ uintptr_t dispatch_edgecall_ocall( unsigned long call_id,
     goto ocall_error;
   }
 
-  ret = SBI_CALL_1(SBI_SM_STOP_ENCLAVE, 1);
+  ret = sbi_stop_enclave(1);
 
   if (ret != 0) {
     goto ocall_error;
@@ -204,7 +204,7 @@ void init_edge_internals(){
 static int handle_elasticlave_map(uid_t uid, uintptr_t* ret_vaddr){
 	uintptr_t paddr, size;
 	uintptr_t paddr_pa = kernel_va_to_pa(&paddr), size_pa = kernel_va_to_pa(&size);
-    uintptr_t ret = SBI_CALL_3(SBI_SM_ELASTICLAVE_MAP, (uintptr_t)uid, paddr_pa, size_pa);
+    uintptr_t ret = SBI_CALL_3(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_MAP, (uintptr_t)uid, paddr_pa, size_pa);
 	if(ret)
 		return 1;
 
@@ -219,7 +219,7 @@ static int handle_elasticlave_map(uid_t uid, uintptr_t* ret_vaddr){
 static int handle_elasticlave_map_at(uid_t uid, uintptr_t va){
 	uintptr_t paddr, size;
 	uintptr_t paddr_pa = kernel_va_to_pa(&paddr), size_pa = kernel_va_to_pa(&size);
-    uintptr_t ret = SBI_CALL_3(SBI_SM_ELASTICLAVE_MAP, (uintptr_t)uid, paddr_pa, size_pa);
+    uintptr_t ret = SBI_CALL_3(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_MAP, (uintptr_t)uid, paddr_pa, size_pa);
 	if(ret)
 		return 1;
 
@@ -241,7 +241,7 @@ static int handle_elasticlave_unmap(uintptr_t vaddr){
 	if(vma == NULL || vma->type != VMA_TYPE_SHARED)
 		return 1;
 
-	uintptr_t ret = SBI_CALL_1(SBI_SM_ELASTICLAVE_UNMAP, vma->uid);
+	uintptr_t ret = SBI_CALL_1(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_UNMAP, vma->uid);
 	if(ret)
 		return 1;
 	unmap_pages(vma);
@@ -271,7 +271,7 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
 
   switch (n) {
   case(RUNTIME_SYSCALL_EXIT):
-    SBI_CALL_2(SBI_SM_EXIT_ENCLAVE, arg0, kernel_va_to_pa(&stats));
+    SBI_CALL_2(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_EXIT_ENCLAVE, arg0, kernel_va_to_pa(&stats));
     break;
   case(RUNTIME_SYSCALL_OCALL):
     ret = dispatch_edgecall_ocall(arg0, (void*)arg1, arg2, (void*)arg3, arg4, 0);
@@ -285,7 +285,7 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
 
     copy_from_user((void*)rt_copy_buffer_2, (void*)arg1, arg2);
 
-    ret = SBI_CALL_3(SBI_SM_ATTEST_ENCLAVE, copy_buffer_1_pa, copy_buffer_2_pa, arg2);
+    ret = SBI_CALL_3(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ATTEST_ENCLAVE, copy_buffer_1_pa, copy_buffer_2_pa, arg2);
 
     /* TODO we consistently don't have report size when we need it */
     copy_to_user((void*)arg0, (void*)rt_copy_buffer_1, 2048);
@@ -293,7 +293,7 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
     break;
   case(RUNTIME_SYSCALL_ELASTICLAVE_CREATE):
 	/*copy_string_from_user(region_name, (char*)arg0, REGION_NAME_MAX_LEN);*/
-    ret = SBI_CALL_2(SBI_SM_ELASTICLAVE_CREATE, arg0, ret_uid_pa); // necessary to do the address translation
+    ret = SBI_CALL_2(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_CREATE, arg0, ret_uid_pa); // necessary to do the address translation
 	// arg0: name
 	// arg1: size
 	// ret_val: paddr
@@ -310,7 +310,7 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
   case(RUNTIME_SYSCALL_ELASTICLAVE_CHANGE):
 	// arg0: uid
 	// arg1: eid
-	ret = SBI_CALL_2(SBI_SM_ELASTICLAVE_CHANGE, arg0, arg1); 
+	ret = SBI_CALL_2(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_CHANGE, arg0, arg1); 
     break;
   case(RUNTIME_SYSCALL_ELASTICLAVE_MAP):
 	// arg0: uid
@@ -329,16 +329,16 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
 	ret = handle_elasticlave_unmap(arg0);
 	break;
   case(RUNTIME_SYSCALL_ELASTICLAVE_SHARE):
-	ret = SBI_CALL_3(SBI_SM_ELASTICLAVE_SHARE, arg0, arg1, arg2);
+	ret = SBI_CALL_3(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_SHARE, arg0, arg1, arg2);
 	break;
   case(RUNTIME_SYSCALL_ELASTICLAVE_TRANSFER):
 	// arg0: uid
 	// arg1: oeid
-	ret = SBI_CALL_2(SBI_SM_ELASTICLAVE_TRANSFER, arg0, arg1);
+	ret = SBI_CALL_2(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_TRANSFER, arg0, arg1);
 	break;
   case(RUNTIME_SYSCALL_ELASTICLAVE_DESTROY):
 	// arg0: uid
-	ret = SBI_CALL_1(SBI_SM_ELASTICLAVE_DESTROY, arg0);
+	ret = SBI_CALL_1(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_DESTROY, arg0);
 	if(!ret){
 		struct vma* vma;
 		for(vma = get_vma_by_uid((uid_t)arg0); vma != NULL;
@@ -348,10 +348,10 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
 	}
 	break;
   case(RUNTIME_SYSCALL_YIELD):
-    ret = SBI_CALL_1(SBI_SM_STOP_ENCLAVE, 3);
+    ret = SBI_CALL_1(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_STOP_ENCLAVE, 3);
 	break;
   case(RUNTIME_SYSCALL_CALL_RETURN):
-	ret = SBI_CALL_1(SBI_SM_STOP_ENCLAVE, 4);
+	ret = SBI_CALL_1(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_STOP_ENCLAVE, 4);
 	break;
   case(RUNTIME_SYSCALL_GET_SHARED_BUFFER):
 	copy_to_user((void*)arg0, &shared_buffer, sizeof(uintptr_t));
@@ -427,7 +427,7 @@ uintptr_t handle_syscall(struct encl_ctx* ctx, unsigned long start_cycle)
   case(SYS_exit):
   case(SYS_exit_group):
     print_strace("[runtime] exit or exit_group (%lu)\r\n",n);
-    SBI_CALL_2(SBI_SM_EXIT_ENCLAVE, arg0, kernel_va_to_pa(&stats));
+    SBI_CALL_2(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_EXIT_ENCLAVE, arg0, kernel_va_to_pa(&stats));
     break;
 #endif /* LINUX_SYSCALL_WRAPPING */
 

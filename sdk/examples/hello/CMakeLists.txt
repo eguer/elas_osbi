@@ -17,11 +17,13 @@ endif()
 
 add_executable(${eapp_bin} ${eapp_src})
 target_link_libraries(${eapp_bin} "-static")
+target_include_directories(${eapp_bin} PRIVATE ${KEYSTONE_SDK_DIR}/lib/app/include ${KEYSTONE_SDK_DIR}/lib/edge/include ${KEYSTONE_SDK_DIR}/lib/verifier/include)
 
 # host
 
 add_executable(${host_bin} ${host_src})
 target_link_libraries(${host_bin} ${KEYSTONE_LIB_HOST} ${KEYSTONE_LIB_EDGE})
+target_include_directories(${host_bin} PRIVATE ${KEYSTONE_SDK_DIR}/lib/host/include ${KEYSTONE_SDK_DIR}/lib/edge/include ${KEYSTONE_SDK_DIR}/lib/verifier/include)
 
 # add target for Eyrie runtime (see keystone.cmake)
 

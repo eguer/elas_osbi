@@ -36,7 +36,7 @@ static void handle_software_interrupt(struct encl_ctx* ctx){
   uintptr_t event_count, event_buf[EVENTS_MAX << 1];
   uintptr_t pa_event_count = (uintptr_t)kernel_va_to_pa(&event_count),
 			pa_event_buf = (uintptr_t)kernel_va_to_pa(event_buf);
-  uintptr_t ret = SBI_CALL_3(SBI_SM_ELASTICLAVE_REGION_EVENTS,
+  uintptr_t ret = SBI_CALL_3(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_SM_ELASTICLAVE_REGION_EVENTS,
 		  pa_event_buf,
 		  pa_event_count,
 		  EVENTS_MAX);

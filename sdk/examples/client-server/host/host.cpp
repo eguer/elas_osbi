@@ -60,9 +60,9 @@ int main(int argc, char* argv[])
     params.setFreeMemSize(freemem_size);
     params.setUntrustedMem(utm_ptr, untrusted_size);
 
-    enclave1.init("tut2-server", "../eyrie-rt", params); 
+    enclave1.init("server", "eyrie-rt", params); 
 
-    enclave2.init("tut2-client", "../eyrie-rt", params);
+    enclave2.init("client", "eyrie-rt", params);
 
     DefaultEdgeCallDispatcher dispatcher1, dispatcher2;
     enclave1.registerOcallDispatch(&dispatcher1);

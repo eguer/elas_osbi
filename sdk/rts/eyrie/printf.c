@@ -73,7 +73,7 @@
 
 void _putchar(char character)
 {
-  SBI_CALL_1(SBI_CONSOLE_PUTCHAR, character);
+  SBI_CALL_1(SBI_EXT_EXPERIMENTAL_KEYSTONE_ENCLAVE, SBI_CONSOLE_PUTCHAR, character);
 }
 
 // output function type
