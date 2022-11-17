@@ -15,6 +15,10 @@
 #include <sbi/riscv_locks.h>
 #include <sbi/riscv_atomic.h>
 
+#define PMP_IPI_SHAREDEM 0
+#define PMP_IPI_SET 1
+#define PMP_IPI_UNSET 2
+
 /* PMP global spin locks */
 static spinlock_t pmp_lock = SPIN_LOCK_INITIALIZER;
 
@@ -188,6 +192,20 @@ int pmp_detect_region_overlap_atomic(uintptr_t addr, uintptr_t size)
   return region_overlap;
 }
 
+// method calls all make sense but only called by ipi_update which relies on mailbox system
+// void pmp_ipi_update(int* args) {
+// 	int ipi_type = args[0];
+
+// 	if(ipi_type == PMP_IPI_SHAREDEM) { 
+// 	  update_region_perm(shared_regions + args[1]);
+// 	} else if(ipi_type == PMP_IPI_SET) {
+//     uint8_t perm = (uint8_t)args[2];
+// 	  pmp_set_keystone(args[1], perm);
+//   } else{
+//     pmp_unset(args[1]);
+//   }
+// }
+
 /*********************************
  *
  * External Functions
@@ -199,30 +217,34 @@ int pmp_unset_global(int region_idx)
   if(!is_pmp_region_valid(region_idx))
     PMP_ERROR(SBI_ERR_SM_PMP_REGION_INVALID, "Invalid PMP region index");
 
-  send_and_sync_pmp_ipi(region_idx, SBI_PMP_IPI_TYPE_UNSET, PMP_NO_PERM);
+  send_and_sync_pmp_ipi((uintptr_t)-1, region_idx, SBI_PMP_IPI_TYPE_UNSET, PMP_NO_PERM);
 
   return SBI_ERR_SM_PMP_SUCCESS;
 }
 
 /* populate pmp set command to every other hart */
-int pmp_set_global(int region_idx, uint8_t perm)
+// TODO add self, enclave_mask?
+int pmp_set_global(int region_idx, uint8_t perm, uintptr_t enclave_mask)
 {
   if(!is_pmp_region_valid(region_idx))
     PMP_ERROR(SBI_ERR_SM_PMP_REGION_INVALID, "Invalid PMP region index");
 
-  send_and_sync_pmp_ipi(region_idx, SBI_PMP_IPI_TYPE_SET, perm);
+  send_and_sync_pmp_ipi(enclave_mask, region_idx, SBI_PMP_IPI_TYPE_SET, perm);
 
   return SBI_ERR_SM_PMP_SUCCESS;
 }
 
-// int pmp_shmem_update_global(int region) {
-//   /* set PMP of itself */
-//   if(enclave_mask & ENCLAVE_MASK(cpu_get_enclave_id())){
-// 	  update_region_perm(shared_regions + region);
-//   }
+// TODO enclave_mask missing?
+int pmp_shmem_update_global(int region_idx, uintptr_t enclave_mask) {
+  send_and_sync_pmp_ipi(enclave_mask, region_idx, SBI_PMP_IPI_TYPE_SHMEM, PMP_NO_PERM);
 
-//   return SBI_ERR_SM_PMP_SUCCESS;
-// }
+  return SBI_ERR_SM_PMP_SUCCESS;
+}
+
+int pmp_terminate_global(uintptr_t enclave_mask, uintptr_t *regs) {
+  send_and_sync_terminate_ipi(enclave_mask, regs);
+  return SBI_ERR_SM_PMP_SUCCESS;
+}
 
 void pmp_init()
 {

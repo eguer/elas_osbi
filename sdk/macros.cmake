@@ -87,12 +87,10 @@ macro(add_eyrie_runtime target_name tag plugins) # the files are passed via ${AR
 
   ExternalProject_Add(eyrie-${target_name}
     PREFIX ${runtime_prefix}
-    GIT_REPOSITORY https://github.com/keystone-enclave/keystone-runtime
-    GIT_TAG ${tag}
+    URL ${KEYSTONE_SDK_DIR}/rts/eyrie
     CONFIGURE_COMMAND ""
-    UPDATE_COMMAND git fetch
-    BUILD_COMMAND ./build.sh ${plugins}
-    BUILD_IN_SOURCE TRUE
+    BUILD_COMMAND ${KEYSTONE_SDK_DIR}/rts/eyrie/build.sh ${plugins}
+    BUILD_IN_SOURCE FALSE
     INSTALL_COMMAND "")
 
   add_custom_target(${target_name} DEPENDS ${ARGN})

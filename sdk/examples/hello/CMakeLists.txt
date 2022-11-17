@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+
 set(eapp_bin hello)
 set(eapp_src eapp/hello.c)
 set(host_bin hello-runner)
@@ -40,3 +42,5 @@ add_dependencies(${eapp_bin}-package ${eapp_bin}-eyrie)
 
 # add package to the top-level target
 add_dependencies(examples ${eapp_bin}-package)
+
+

@@ -74,8 +74,18 @@ fi
 git submodule sync --recursive
 git submodule update --init --recursive
 
-export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
-#./make-sodium.sh
+if [ ! -z $LIBSODIUM_DIR ] && [ -e $LIBSODIUM_DIR ]
+then
+  echo "LIBSODIUM_DIR is set to $LIBSODIUM_DIR and present. Skipping libsodium installation."
+else
+  echo "LIBSODIUM_DIR is not set or present. Installing from $#(pwd)/libsodium"
+  export LIBSODIUM_DIR=$(pwd)/libsodium/src/libsodium/
+  cd libsodium
+  ./autogen.sh
+  ./configure --host=riscv64-unknown-linux-gnu --disable-ssp --disable-asm --without-pthreads
+  make
+  cd ../..
+fi
 
 # build SDK if not present
 if [ ! -z $KEYSTONE_SDK_DIR ] && [ -e $KEYSTONE_SDK_DIR ]
@@ -83,14 +93,11 @@ then
   echo "KEYSTONE_SDK_DIR is set to $KEYSTONE_SDK_DIR and present. Skipping SDK installation."
 else
   echo "KEYSTONE_SDK_DIR is not set or present. Installing from $(pwd)/sdk"
-  export KEYSTONE_SDK_DIR=$(pwd)/sdk/build$BITS
+  export KEYSTONE_SDK_DIR=$(pwd)/sdk/
   cd sdk
-  mkdir -p build
-  cd build
-  cmake .. $SDK_FLAGS
-  make
-  make install
-  cd ../..
+  make -C lib $*
+  make -C rts/eyrie $*
+  cd ..
 fi
 
 # update source.sh
@@ -100,6 +107,7 @@ echo "export RISCV=$RISCV_DIR" > ./source.sh
 echo "export PATH=$RISCV/bin:\$PATH" >> ./source.sh
 echo "export KEYSTONE_SDK_DIR=$KEYSTONE_SDK_DIR" >> ./source.sh
 echo "export LIBSODIUM_DIR=$LIBSODIUM_DIR" >> ./source.sh
+echo "export MUSL_DIR=$(pwd)/musl/musl-build" >> ./source.sh
 
 echo "RISC-V toolchain and Keystone SDK have been fully setup"
 echo ""
@@ -107,3 +115,5 @@ echo " * Notice: run the following command to update enviroment variables *"
 echo ""
 echo "           source ./source.sh"
 echo ""
+
+

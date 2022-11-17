@@ -208,7 +208,7 @@ int encl_index(struct enclave* encl);
 
 // region events
 void region_events_add(uintptr_t enclave_mask, unsigned int uid, enum region_event_type type, int send_ipi);
-void region_ipi_update(int* args);
+void region_ipi_update(); // TODO add param back in? unused
 void dispatch_events_unlocked();
 void region_events_pop(struct enclave* enclave, int count);
 

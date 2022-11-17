@@ -22,7 +22,7 @@ endif()
 set(KEYSTONE_SDK_DIR $ENV{KEYSTONE_SDK_DIR})
 
 # export include directory
-include_directories(AFTER ${KEYSTONE_SDK_DIR}/include)
+include_directories(AFTER ${KEYSTONE_SDK_DIR}/lib/app/include ${KEYSTONE_SDK_DIR}/lib/edge/include ${KEYSTONE_SDK_DIR}/lib/host/include ${KEYSTONE_SDK_DIR}/lib/verifier/include ${KEYSTONE_SDK_DIR}/lib/app/include)
 
 # set paths to the libraries
 set(KEYSTONE_LIB_HOST ${KEYSTONE_SDK_DIR}/lib/libkeystone-host.a)
@@ -38,5 +38,6 @@ add_custom_target("examples")
 
 # add all examples below
 add_subdirectory(hello)
-add_subdirectory(hello-native)
-add_subdirectory(tests)
+#add_subdirectory(hello-native)
+#add_subdirectory(hello-native2)
+#add_subdirectory(tests)
