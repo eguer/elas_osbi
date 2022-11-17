@@ -50,10 +50,11 @@
 		"mv a2, %3\n\t" \
 		"mv a3, %4\n\t" \
 		"mv a4, %5\n\t" \
-		"mv a7, %6\n\t" \
+		"mv a6, %6\n\t" \
+		"mv a7, %7\n\t" \
 		"ecall\n\t" \
-		"mv %0, a0" : "=r" (__res) : "r" (___arg0) , "r" (___arg1) , "r" (___arg2) , "r" (___arg3), "r" (___arg4), "r" (___which) : \
-		"a0", "a1", "a2", "a3", "a4", "a7", "memory"\
+		"mv %0, a0" : "=r" (__res) : "r" (___arg0) , "r" (___arg1) , "r" (___arg2) , "r" (___arg3), "r" (___arg4), "r" (___which), "r" (___ext) : \
+		"a0", "a1", "a2", "a3", "a4", "a6", "a7", "memory"\
 	); \
 	performance_check_end(&stats.stats_sbi); \
 	performance_count(&stats.stats_sbi); \
