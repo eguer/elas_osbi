@@ -17,11 +17,7 @@ int main(int argc, char** argv)
     params.setFreeMemSize(freemem_size);
     params.setUntrustedMem(utm_ptr, untrusted_size);
 
-    printf("before init\n");
-
     enclave.init("./hello", "./eyrie-rt", params);
-    
-    printf("after init\n");
 
     DefaultEdgeCallDispatcher dispatcher;
     enclave.registerOcallDispatch(&dispatcher);
