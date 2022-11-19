@@ -120,8 +120,6 @@ static int keystone_finalize_enclave(unsigned long arg)
   // SM will write the eid to struct enclave.eid
   create_args.eid_pptr = (unsigned int *) __pa(&enclave->eid);
 
-  keystone_err("before\n");
-
   // set up the PMP regions for utm and epm
   // computing the measurement
   ret = sbi_sm_create_enclave(&create_args);
@@ -129,8 +127,6 @@ static int keystone_finalize_enclave(unsigned long arg)
     keystone_err("keystone_create_enclave: SBI call failed with error codd %ld\n", ret.error);
     goto error_destroy_enclave;
   }
-
-  keystone_err("after\n");
 
   enclave->eid = ret.value;
 
