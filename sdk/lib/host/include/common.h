@@ -20,11 +20,11 @@
 
 /* Currently we have only one command avaiable from the enclave.
  * We need to move it out to other header file (e.g., keystone-sm.h) */
-#define KEYSTONE_ENCLAVE_INTERRUPTED  2
-#define KEYSTONE_ENCLAVE_YIELDED	  19
-#define KEYSTONE_ENCLAVE_EDGE_CALL_HOST  11
-#define KEYSTONE_ENCLAVE_CALL_RETURN 20
-#define KEYSTONE_ENCLAVE_NEW_MEM_REGION 100
+#define KEYSTONE_ENCLAVE_INTERRUPTED      100002
+#define KEYSTONE_ENCLAVE_YIELDED	        100018
+#define KEYSTONE_ENCLAVE_EDGE_CALL_HOST   100011
+#define KEYSTONE_ENCLAVE_CALL_RETURN      100019
+#define KEYSTONE_ENCLAVE_NEW_MEM_REGION   100
 
 /* Types */
 typedef uintptr_t vaddr_t;

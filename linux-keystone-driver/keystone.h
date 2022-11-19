@@ -37,7 +37,7 @@ extern struct list_head shm_list;
 #define SBI_SM_REQUEST_ELASTICLAVE_DESTROY 1001
 
 /* error codes: need to add more */
-#define ENCLAVE_INTERRUPTED     2
+#define ENCLAVE_INTERRUPTED     100002
 #define ENCLAVE_NEW_MEM_REGION	100
 
 long keystone_ioctl(struct file* filep, unsigned int cmd, unsigned long arg);

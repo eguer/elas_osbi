@@ -508,7 +508,6 @@ keystone_status_t Keystone::init(const char *eapppath, const char *runtimepath, 
 
     state = ENCLAVE_STATE_INITIALISED;
 
-
     return KEYSTONE_SUCCESS;
 }
 
